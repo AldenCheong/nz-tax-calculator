@@ -17,7 +17,38 @@ function App() {
 	const [afterTaxAmount, setAfterTaxAmount] = useState(null);
 
 	const calcAfterTaxAmount = (event) => {
-		setAfterTaxAmount(Number(event.target.value) / 2);
+		const brackets = [
+			{
+        threshold: 14000, 
+        operator: "<",
+        rate: 10.5
+      },
+			{
+        threshold: 48000, 
+        operator: "<",
+        rate: 17.5
+      },
+			{
+        threshold: 70000, 
+        operator: "<",
+        rate: 30
+      },
+			{
+        threshold: 180000, 
+        operator: "<",
+        rate: 33
+      },
+			{
+        threshold: 180000, 
+        operator: ">",
+        rate: 39
+      },
+    ];
+
+    
+
+		//setAfterTaxAmount(Number(event.target.value) / 2);
+		setAfterTaxAmount(brackets[0].threshold);
 	};
 
 	return (
