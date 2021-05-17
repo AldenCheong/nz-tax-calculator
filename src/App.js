@@ -33,17 +33,17 @@ function App() {
     let remainder = initialAmount;
     let taxAmount = 0;
     for (let i = 0; i < taxBrackets.length; i++) {
-      const {threshold, condition, rate} = taxBrackets[i];
-      if (condition === "more") {
-        taxAmount += remainder * (rate / 100);
-        break; 
-      }
-
-      if (remainder < threshold) {
+      const {threshold, rate} = taxBrackets[i];
+      const previousThreshold = i > 0 && taxBrackets[i - 1].threshold;
+      
+      if (initialAmount <= threshold || i === (taxBrackets.length - 1)) {
+        if (previousThreshold) remainder -= previousThreshold;
         taxAmount += remainder * (rate / 100);
         break;
       }
 
+      const currentBracket = previousThreshold ? threshold - previousThreshold : threshold;
+      taxAmount += currentBracket * (rate / 100);
     }
 
 		setAfterTaxAmount(taxAmount.toFixed(2));

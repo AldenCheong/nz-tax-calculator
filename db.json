@@ -2,27 +2,22 @@
 	"brackets": [
 		{
 			"threshold": 14000,
-			"condition": "less",
 			"rate": 10.5
 		},
 		{
 			"threshold": 48000,
-			"condition": "less",
 			"rate": 17.5
 		},
 		{
 			"threshold": 70000,
-			"condition": "less",
 			"rate": 30
 		},
 		{
 			"threshold": 180000,
-			"condition": "less",
 			"rate": 33
 		},
 		{
 			"threshold": 180000,
-			"condition": "more",
 			"rate": 39
 		}
 	]
