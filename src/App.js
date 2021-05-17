@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import "./App.css";
@@ -14,41 +14,39 @@ const theme = createMuiTheme({
 });
 
 function App() {
-	const [afterTaxAmount, setAfterTaxAmount] = useState(null);
+	const [afterTaxAmount, setAfterTaxAmount] = useState();
+  const [taxBrackets, setTaxBrackets] = useState();
+  const bracketUrl = "http://localhost:5000/tax-brackets";
+
+  useEffect(() => {
+    const getTaxBrackets = async () => {
+      const fetchResult = await fetch(bracketUrl);
+      setTaxBrackets(await fetchResult.json());
+    }
+    getTaxBrackets();
+  }, [])
 
 	const calcAfterTaxAmount = (event) => {
-		const brackets = [
-			{
-        threshold: 14000, 
-        operator: "<",
-        rate: 10.5
-      },
-			{
-        threshold: 48000, 
-        operator: "<",
-        rate: 17.5
-      },
-			{
-        threshold: 70000, 
-        operator: "<",
-        rate: 30
-      },
-			{
-        threshold: 180000, 
-        operator: "<",
-        rate: 33
-      },
-			{
-        threshold: 180000, 
-        operator: ">",
-        rate: 39
-      },
-    ];
+		const initialAmount = Number(event.target.value);
+    if (initialAmount <= 0) return;
 
-    
+    let remainder = initialAmount;
+    let taxAmount = 0;
+    for (let i = 0; i < taxBrackets.length; i++) {
+      const {threshold, condition, rate} = taxBrackets[i];
+      if (condition === "more") {
+        taxAmount += remainder * (rate / 100);
+        break; 
+      }
 
-		//setAfterTaxAmount(Number(event.target.value) / 2);
-		setAfterTaxAmount(brackets[0].threshold);
+      if (remainder < threshold) {
+        taxAmount += remainder * (rate / 100);
+        break;
+      }
+
+    }
+
+		setAfterTaxAmount(initialAmount - taxAmount);
 	};
 
 	return (
