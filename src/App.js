@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 function App() {
 	const [afterTaxAmount, setAfterTaxAmount] = useState();
   const [taxBrackets, setTaxBrackets] = useState();
-  const bracketUrl = "http://localhost:5000/tax-brackets";
+  const bracketUrl = "http://localhost:5000/brackets";
 
   useEffect(() => {
     const getTaxBrackets = async () => {
@@ -46,7 +46,7 @@ function App() {
 
     }
 
-		setAfterTaxAmount(initialAmount - taxAmount);
+		setAfterTaxAmount(taxAmount.toFixed(2));
 	};
 
 	return (
@@ -61,7 +61,7 @@ function App() {
 						label="Annual Income"
 						onChange={calcAfterTaxAmount}
 					/>
-					<p>After tax: {afterTaxAmount}</p>
+					<p>Tax Amount: {afterTaxAmount}</p>
 					<img src={TaxBracket2021} alt="tax bracket" />
 				</header>
 			</div>
