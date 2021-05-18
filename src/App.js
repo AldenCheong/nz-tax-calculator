@@ -14,7 +14,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
-	const [afterTaxAmount, setAfterTaxAmount] = useState();
+	const [taxAmount, setTaxAmount] = useState();
 	const [accAmount, setAccAmount] = useState();
   const [taxBrackets, setTaxBrackets] = useState();
   const bracketUrl = "http://localhost:5000/brackets";
@@ -27,7 +27,7 @@ function App() {
     getTaxBrackets();
   }, [])
 
-	const calcAfterTaxAmount = (event) => {
+	const calcTaxAmount = (event) => {
 		const initialAmount = Number(event.target.value);
     if (initialAmount <= 0) return;
 
@@ -47,7 +47,7 @@ function App() {
       taxAmount += currentBracket * (rate / 100);
     }
 
-		setAfterTaxAmount(taxAmount.toFixed(2));
+		setTaxAmount(taxAmount.toFixed(2));
     setAccAmount(initialAmount * (1.39/100));
 	};
 
@@ -61,9 +61,9 @@ function App() {
 						variant="filled"
 						color="secondary"
 						label="Annual Income"
-						onChange={calcAfterTaxAmount}
+						onChange={calcTaxAmount}
 					/>
-					<p>Tax Amount: {afterTaxAmount}</p>
+					<p>Tax Amount: {taxAmount}</p>
 					<p>ACC Amount: {accAmount}</p>
 					<img src={TaxBracket2021} alt="tax bracket" />
 				</header>
