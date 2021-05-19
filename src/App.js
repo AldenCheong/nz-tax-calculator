@@ -3,8 +3,10 @@ import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import TextField from "@material-ui/core/TextField";
 
 function App() {
-	const [taxAmount, setTaxAmount] = useState();
-	const [accAmount, setAccAmount] = useState();
+  const [deductable, setDeductable] = useState({
+    tax: 0,
+    acc: 0,
+  })
 	const [taxBrackets, setTaxBrackets] = useState();
 	const [accBracket, setAccBracket] = useState();
 	const host = "http://localhost:5000";
@@ -45,21 +47,21 @@ function App() {
 				taxAmount += currentBracket * (rate / 100);
 			}
 
-			setTaxAmount(taxAmount.toFixed(2));
+			return taxAmount.toFixed(2);
 		};
 
 		const calculateAcc = () => {
 			const { threshold, rate } = accBracket;
-			setAccAmount(
-				(
-					(initialAmount >= threshold ? threshold : initialAmount) *
-					(rate / 100)
-				).toFixed(2)
-			);
+			return (
+        (initialAmount >= threshold ? threshold : initialAmount) *
+        (rate / 100)
+      ).toFixed(2);
 		};
 
-		calculateTax();
-		calculateAcc();
+		setDeductable({ 
+      tax: calculateTax(),
+      acc: calculateAcc(),
+    });
 	};
 
 	return (
@@ -73,9 +75,9 @@ function App() {
           label="Annual Income"
           onChange={calculateDetails}
         />
-        <p>Tax Amount: {taxAmount}</p>
-        <p>ACC Amount: {accAmount}</p>
-        <p>Take home pay: {accAmount}</p>
+        <p>Tax Amount: {deductable.tax}</p>
+        <p>ACC Amount: {deductable.acc}</p>
+        <p>Take home pay: {deductable.acc}</p>
         <img src={TaxBracket2021} alt="tax bracket" />
       </header>
     </div>
