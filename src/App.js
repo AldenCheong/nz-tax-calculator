@@ -1,17 +1,6 @@
 import { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
-import "./App.css";
 import TextField from "@material-ui/core/TextField";
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
-const theme = createMuiTheme({
-	palette: {
-		text: {
-			primary: "#fff",
-		},
-	},
-});
 
 function App() {
 	const [taxAmount, setTaxAmount] = useState();
@@ -74,23 +63,22 @@ function App() {
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
-			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<p>Tax Calculator</p>
-					<TextField
-						variant="filled"
-						color="secondary"
-						label="Annual Income"
-						onChange={calculateDetails}
-					/>
-					<p>Tax Amount: {taxAmount}</p>
-					<p>ACC Amount: {accAmount}</p>
-					<img src={TaxBracket2021} alt="tax bracket" />
-				</header>
-			</div>
-		</ThemeProvider>
+    <div className="App">
+      <header className="App-header">
+        <p>Tax Calculator</p>
+        <TextField
+          variant="outlined"
+          size="small"
+          color="secondary"
+          label="Annual Income"
+          onChange={calculateDetails}
+        />
+        <p>Tax Amount: {taxAmount}</p>
+        <p>ACC Amount: {accAmount}</p>
+        <p>Take home pay: {accAmount}</p>
+        <img src={TaxBracket2021} alt="tax bracket" />
+      </header>
+    </div>
 	);
 }
 
