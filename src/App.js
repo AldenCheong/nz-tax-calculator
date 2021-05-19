@@ -16,48 +16,61 @@ const theme = createMuiTheme({
 function App() {
 	const [taxAmount, setTaxAmount] = useState();
 	const [accAmount, setAccAmount] = useState();
-  const [taxBrackets, setTaxBrackets] = useState();
-  const host = "http://localhost:5000";
-  const taxBracketUrl = host + "/tax-brackets";
-  const accBracketUrl = host + "/acc-bracket";
+	const [taxBrackets, setTaxBrackets] = useState();
+	const [accBracket, setAccBracket] = useState();
+	const host = "http://localhost:5000";
 
-  useEffect(() => {
-    const getTaxBrackets = async () => {
-      const fetchResult = await fetch(taxBracketUrl);
-      setTaxBrackets(await fetchResult.json());
-    }
-    getTaxBrackets();
-  }, [])
+	useEffect(() => {
+		const getTaxBrackets = async () => {
+			const fetchResult = await fetch(host + "/tax-brackets");
+			setTaxBrackets(await fetchResult.json());
+		};
+		const getAccBracket = async () => {
+			const fetchResult = await fetch(host + "/acc-bracket");
+			setAccBracket(await fetchResult.json());
+		};
+		getTaxBrackets();
+		getAccBracket();
+	}, []);
 
 	const calculateDetails = (event) => {
-    const initialAmount = Number(event.target.value);
+		const initialAmount = Number(event.target.value);
+		if (initialAmount <= 0) return;
 
-    const calculateTax = () => {
-      if (initialAmount <= 0) return;
+		const calculateTax = () => {
+			let remainder = initialAmount;
+			let taxAmount = 0;
+			for (let i = 0; i < taxBrackets.length; i++) {
+				const { threshold, rate } = taxBrackets[i];
+				const previousThreshold = i > 0 && taxBrackets[i - 1].threshold;
 
-      let remainder = initialAmount;
-      let taxAmount = 0;
-      for (let i = 0; i < taxBrackets.length; i++) {
-        const {threshold, rate} = taxBrackets[i];
-        const previousThreshold = i > 0 && taxBrackets[i - 1].threshold;
-        
-        if (initialAmount <= threshold || i === (taxBrackets.length - 1)) {
-          if (previousThreshold) remainder -= previousThreshold;
-          taxAmount += remainder * (rate / 100);
-          break;
-        }
+				if (initialAmount <= threshold || i === taxBrackets.length - 1) {
+					if (previousThreshold) remainder -= previousThreshold;
+					taxAmount += remainder * (rate / 100);
+					break;
+				}
 
-        const currentBracket = previousThreshold ? threshold - previousThreshold : threshold;
-        taxAmount += currentBracket * (rate / 100);
-      }
+				const currentBracket = previousThreshold
+					? threshold - previousThreshold
+					: threshold;
+				taxAmount += currentBracket * (rate / 100);
+			}
 
-      setTaxAmount(taxAmount.toFixed(2));
-    }
-    
-    const calculateAcc = () => setAccAmount(initialAmount * (1.39/100));
+			setTaxAmount(taxAmount.toFixed(2));
+		};
 
-    calculateTax();
-    calculateAcc();
+		const calculateAcc = () => {
+			const { threshold, rate } = accBracket;
+			setAccAmount(
+				(
+					(initialAmount >= threshold ? threshold : initialAmount) *
+					(rate / 100)
+				).toFixed(2)
+			);
+		};
+
+		calculateTax();
+		calculateAcc();
 	};
 
 	return (

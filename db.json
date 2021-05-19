@@ -21,10 +21,8 @@
 			"rate": 39
 		}
 	],
-	"acc-bracket": [
-		{
-			"threshold": 130911,
-			"rate": 1.39
-		}
-	]
+	"acc-bracket": {
+		"threshold": 130911,
+		"rate": 1.39
+	}
 }
