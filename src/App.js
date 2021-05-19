@@ -17,11 +17,13 @@ function App() {
 	const [taxAmount, setTaxAmount] = useState();
 	const [accAmount, setAccAmount] = useState();
   const [taxBrackets, setTaxBrackets] = useState();
-  const bracketUrl = "http://localhost:5000/brackets";
+  const host = "http://localhost:5000";
+  const taxBracketUrl = host + "/tax-brackets";
+  const accBracketUrl = host + "/acc-bracket";
 
   useEffect(() => {
     const getTaxBrackets = async () => {
-      const fetchResult = await fetch(bracketUrl);
+      const fetchResult = await fetch(taxBracketUrl);
       setTaxBrackets(await fetchResult.json());
     }
     getTaxBrackets();
@@ -29,7 +31,7 @@ function App() {
 
 	const calculateDetails = (event) => {
     const initialAmount = Number(event.target.value);
-    
+
     const calculateTax = () => {
       if (initialAmount <= 0) return;
 

@@ -1,5 +1,5 @@
 {
-	"brackets": [
+	"tax-brackets": [
 		{
 			"threshold": 14000,
 			"rate": 10.5
@@ -19,6 +19,12 @@
 		{
 			"threshold": 180000,
 			"rate": 39
+		}
+	],
+	"acc-bracket": [
+		{
+			"threshold": 130911,
+			"rate": 1.39
 		}
 	]
 }
