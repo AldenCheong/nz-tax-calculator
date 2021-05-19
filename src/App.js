@@ -3,25 +3,22 @@ import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import TextField from "@material-ui/core/TextField";
 
 function App() {
-  const [deductable, setDeductable] = useState({
-    tax: 0,
-    acc: 0,
-  })
-	const [taxBrackets, setTaxBrackets] = useState();
-	const [accBracket, setAccBracket] = useState();
+	const [deductable, setDeductable] = useState();
+	const [bracket, setBracket] = useState();
 	const host = "http://localhost:5000";
 
 	useEffect(() => {
-		const getTaxBrackets = async () => {
-			const fetchResult = await fetch(host + "/tax-brackets");
-			setTaxBrackets(await fetchResult.json());
+		const fetchBracket = async () => {
+			const fetchTax = await fetch(host + "/tax-brackets");
+			const fetchAcc = await fetch(host + "/acc-bracket");
+      const taxBracket = await fetchTax.json();
+      const accBracket = await fetchAcc.json();
+			setBracket({
+        tax: taxBracket,
+        acc: accBracket,
+      }); 
 		};
-		const getAccBracket = async () => {
-			const fetchResult = await fetch(host + "/acc-bracket");
-			setAccBracket(await fetchResult.json());
-		};
-		getTaxBrackets();
-		getAccBracket();
+    fetchBracket();
 	}, []);
 
 	const calculateDetails = (event) => {
@@ -29,6 +26,7 @@ function App() {
 		if (initialAmount <= 0) return;
 
 		const calculateTax = () => {
+			const taxBrackets = bracket.tax;
 			let remainder = initialAmount;
 			let taxAmount = 0;
 			for (let i = 0; i < taxBrackets.length; i++) {
@@ -51,36 +49,36 @@ function App() {
 		};
 
 		const calculateAcc = () => {
-			const { threshold, rate } = accBracket;
+			const { threshold, rate } = bracket.acc;
 			return (
-        (initialAmount >= threshold ? threshold : initialAmount) *
-        (rate / 100)
-      ).toFixed(2);
+				(initialAmount >= threshold ? threshold : initialAmount) *
+				(rate / 100)
+			).toFixed(2);
 		};
 
-		setDeductable({ 
-      tax: calculateTax(),
-      acc: calculateAcc(),
-    });
+		setDeductable({
+			tax: calculateTax(),
+			acc: calculateAcc(),
+		});
 	};
 
 	return (
-    <div className="App">
-      <header className="App-header">
-        <p>Tax Calculator</p>
-        <TextField
-          variant="outlined"
-          size="small"
-          color="secondary"
-          label="Annual Income"
-          onChange={calculateDetails}
-        />
-        <p>Tax Amount: {deductable.tax}</p>
-        <p>ACC Amount: {deductable.acc}</p>
-        <p>Take home pay: {deductable.acc}</p>
-        <img src={TaxBracket2021} alt="tax bracket" />
-      </header>
-    </div>
+		<div className="App">
+			<header className="App-header">
+				<p>Tax Calculator</p>
+				<TextField
+					variant="outlined"
+					size="small"
+					color="secondary"
+					label="Annual Income"
+					onChange={calculateDetails}
+				/>
+				<p>Tax Amount: {deductable?.tax}</p>
+				<p>ACC Amount: {deductable?.acc}</p>
+				<p>Take home pay: {deductable?.acc}</p>
+				<img src={TaxBracket2021} alt="tax bracket" />
+			</header>
+		</div>
 	);
 }
 
