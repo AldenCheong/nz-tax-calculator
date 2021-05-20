@@ -4,8 +4,10 @@ import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import TextField from "@material-ui/core/TextField";
 
 function App() {
-	const [deductable, setDeductable] = useState();
+  const [income, setIncome] = useState();
+	const [deductable, setDeductable] = useState({});
 	const [bracket, setBracket] = useState();
+  const [takeHomePay, setTakeHomePay] = useState();
 	const host = "http://localhost:5000";
 
 	useEffect(() => {
@@ -22,8 +24,14 @@ function App() {
     fetchBracket();
 	}, []);
 
+  useEffect(() => {
+    const { tax, acc } = deductable;
+    setTakeHomePay(income - tax - acc);
+  }, [deductable])
+
 	const calculateDetails = (event) => {
-		const initialAmount = Number(event.target.value);
+    const initialAmount = Number(event.target.value);
+		setIncome(initialAmount);
 		if (initialAmount <= 0) return;
 
 		const calculateTax = () => {
@@ -76,7 +84,7 @@ function App() {
 				/>
 				<p>Tax Amount: {deductable?.tax}</p>
 				<p>ACC Amount: {deductable?.acc}</p>
-				<p>Take home pay: {deductable?.acc}</p>
+				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
 			</header>
