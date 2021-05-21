@@ -2,38 +2,42 @@ import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField } from "@material-ui/core";
-import KiwiSaver from './components/kiwisaver/kiwisaver-select';
+import KiwiSaver from "./components/kiwisaver/kiwisaver-select";
 
 import "./App.css";
 
 function App() {
-  const [income, setIncome] = useState();
+	const [income, setIncome] = useState();
 	const [deductable, setDeductable] = useState({});
 	const [bracket, setBracket] = useState();
-  const [takeHomePay, setTakeHomePay] = useState();
+	const [kiwiSaver, setKiwiSaver] = useState({
+		include: false,
+		rate: 0,
+	});
+	const [takeHomePay, setTakeHomePay] = useState();
 	const host = "http://localhost:5000";
 
 	useEffect(() => {
 		const fetchBracket = async () => {
 			const fetchTax = await fetch(host + "/tax-brackets");
 			const fetchAcc = await fetch(host + "/acc-bracket");
-      const taxBracket = await fetchTax.json();
-      const accBracket = await fetchAcc.json();
+			const taxBracket = await fetchTax.json();
+			const accBracket = await fetchAcc.json();
 			setBracket({
-        tax: taxBracket,
-        acc: accBracket,
-      }); 
+				tax: taxBracket,
+				acc: accBracket,
+			});
 		};
-    fetchBracket();
+		fetchBracket();
 	}, []);
 
-  useEffect(() => {
-    const { tax, acc } = deductable;
-    setTakeHomePay(income - tax - acc);
-  }, [deductable])
+	useEffect(() => {
+		const { tax, acc } = deductable;
+		setTakeHomePay(income - tax - acc);
+	}, [income, deductable]);
 
 	const calculateDetails = (event) => {
-    const initialAmount = Number(event.target.value);
+		const initialAmount = Number(event.target.value);
 		setIncome(initialAmount);
 		if (initialAmount <= 0) return;
 
@@ -87,7 +91,11 @@ function App() {
 				/>
 				<p>Tax Amount: {deductable?.tax}</p>
 				<p>ACC Amount: {deductable?.acc}</p>
-        <KiwiSaver />
+				<KiwiSaver
+					checked={kiwiSaver.include}
+					onToggle={() => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include })}
+					setRate={(rate) => setKiwiSaver({ ...kiwiSaver, rate: rate })}
+				/>
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />

@@ -1,20 +1,23 @@
 import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel } from '@material-ui/core';
 
-const KiwiSaver = ({}) => {
+const KiwiSaver = ({ checked, onToggle, setRate }) => {
+	let rate = 3;  
+	const setDeductRate = (event) => {
+		rate = event.target.value;
+		setRate(event.target.value);
+	}
+
 	return (
 		<>
 			<FormControlLabel 
 				control={(
-					<Switch name="kiwiSaver" color="primary" />   
+					<Switch name="kiwiSaver" color="primary" checked={checked} onChange={onToggle}/>   
 				)}
 				label="KiwiSaver"
 			/>
-			<FormControl variant="outlined" size="small">
-				<InputLabel id="select-kiwisaver-percentage">KiwiSaver%</InputLabel> 
-				<Select className="select" labelId="select-kiwisaver-percentage" label="KiwiSaver%">
-					<MenuItem value="">
-						<em>Opt out</em>
-					</MenuItem>
+			{checked && <FormControl variant="outlined" size="small">
+				<InputLabel>KiwiSaver%</InputLabel> 
+				<Select className="select" value={rate} label="KiwiSaver%" /*onChange={setDeductRate}*/>
 					<MenuItem value={3}>3%</MenuItem>
 					<MenuItem value={4}>4%</MenuItem>
 					<MenuItem value={6}>6%</MenuItem>
@@ -24,7 +27,7 @@ const KiwiSaver = ({}) => {
 						<em>Custom</em>
 					</MenuItem>
 				</Select>
-			</FormControl>
+			</FormControl>}
 		</>
 	)
 }
