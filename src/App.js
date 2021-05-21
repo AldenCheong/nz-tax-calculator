@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
-import { TextField, Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import KiwiSaver from './components/kiwisaver/kiwisaver-select';
 
 import "./App.css";
 
@@ -86,28 +87,7 @@ function App() {
 				/>
 				<p>Tax Amount: {deductable?.tax}</p>
 				<p>ACC Amount: {deductable?.acc}</p>
-        <FormControlLabel 
-          control={(
-            <Switch name="kiwiSaver" color="primary" />   
-          )}
-          label="KiwiSaver"
-        />
-        <FormControl variant="outlined" size="small">
-          <InputLabel id="select-kiwisaver-percentage">KiwiSaver%</InputLabel> 
-          <Select className="select" labelId="select-kiwisaver-percentage" label="KiwiSaver%">
-            <MenuItem value="">
-              <em>Opt out</em>
-            </MenuItem>
-            <MenuItem value={3}>3%</MenuItem>
-            <MenuItem value={4}>4%</MenuItem>
-            <MenuItem value={6}>6%</MenuItem>
-            <MenuItem value={8}>8%</MenuItem>
-            <MenuItem value={10}>10%</MenuItem>
-            <MenuItem value="Custom">
-              <em>Custom</em>
-            </MenuItem>
-          </Select>
-        </FormControl>
+        <KiwiSaver />
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
