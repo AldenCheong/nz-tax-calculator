@@ -3,6 +3,8 @@ import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField, Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel } from "@material-ui/core";
 
+import "./App.css";
+
 function App() {
   const [income, setIncome] = useState();
 	const [deductable, setDeductable] = useState({});
@@ -92,9 +94,9 @@ function App() {
         />
         <FormControl variant="outlined" size="small">
           <InputLabel id="select-kiwisaver-percentage">KiwiSaver%</InputLabel> 
-          <Select labelId="select-kiwisaver-percentage" label="KiwiSaver%">
+          <Select className="select" labelId="select-kiwisaver-percentage" label="KiwiSaver%">
             <MenuItem value="">
-              <em>None</em>
+              <em>Opt out</em>
             </MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
