@@ -1,19 +1,41 @@
 import { useState } from 'react';
+import NumberFormat from "react-number-format";
 import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel, TextField, InputAdornment } from '@material-ui/core';
 
 const KiwiSaver = ({ checked, onToggle, setRate }) => {
 	const [deductRate, setDeductRate] = useState(3);   
-	const [showCustom, setShowCustom] = useState(true);
+	const [showCustom, setShowCustom] = useState(false);
 
 	const updateRate = (event) => {
-		setDeductRate(event.target.value);
+		const selectedValue = event.target.value;
+		setDeductRate(selectedValue);
+		setShowCustom(selectedValue === "Custom");
 	}
 
-	const validateCustomField = (event) => {
-		const inputValue = event.target.value;
-		if (Number(inputValue) === NaN) {
-			event.target.value = 0
+	const NumberFormatCustom = (props) => {
+		const { inputRef, onChange, ...other } = props;
+		const MIN_RATE = 1;
+		const MAX_RATE = 100;
+		const withRateLimit = (inputObj) => {
+			const { value } = inputObj;
+			if (value < MIN_RATE || value > MAX_RATE) return inputObj;
 		}
+
+		return (
+			<NumberFormat
+				{...other}
+				getInputRef={inputRef}
+				onValueChange={(values) => {
+					onChange({
+						target: {
+							name: props.name,
+							value: values.value,
+						},
+					});
+				}}
+				isAllowed={withRateLimit}
+			/>
+		);
 	}
 
 	return (
@@ -39,14 +61,15 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
 			</FormControl>}
 			{showCustom && (
 				<TextField
+          variant="outlined"
           label="Custom"
 					size="small"
+					defaultValue={1}
 					className="txt-custom-kiwisaver"
           InputProps={{
             endAdornment: <InputAdornment>%</InputAdornment>,
+						inputComponent: NumberFormatCustom,
           }}
-          variant="outlined"
-					onChange={validateCustomField}
         />
 			)}
 		</>
