@@ -1,3 +1,8 @@
-.select {
-	min-width: 150px;
+.select-kiwisaver {
+	min-width: 100px;
+	margin-right: 10px;
+}
+
+.txt-custom-kiwisaver {
+	max-width: 100px;
 }

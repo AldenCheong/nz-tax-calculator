@@ -1,12 +1,19 @@
 import { useState } from 'react';
-import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel } from '@material-ui/core';
+import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel, TextField, InputAdornment } from '@material-ui/core';
 
 const KiwiSaver = ({ checked, onToggle, setRate }) => {
 	const [deductRate, setDeductRate] = useState(3);   
-	const [showCustom, setShowCustom] = useState(false);
+	const [showCustom, setShowCustom] = useState(true);
 
 	const updateRate = (event) => {
 		setDeductRate(event.target.value);
+	}
+
+	const validateCustomField = (event) => {
+		const inputValue = event.target.value;
+		if (Number(inputValue) === NaN) {
+			event.target.value = 0
+		}
 	}
 
 	return (
@@ -19,7 +26,7 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
 			/>
 			{checked && <FormControl variant="outlined" size="small">
 				<InputLabel>KiwiSaver%</InputLabel> 
-				<Select className="select" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
+				<Select className="select-kiwisaver" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
 					<MenuItem value={3}>3%</MenuItem>
 					<MenuItem value={4}>4%</MenuItem>
 					<MenuItem value={6}>6%</MenuItem>
@@ -30,6 +37,18 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
 					</MenuItem>
 				</Select>
 			</FormControl>}
+			{showCustom && (
+				<TextField
+          label="Custom"
+					size="small"
+					className="txt-custom-kiwisaver"
+          InputProps={{
+            endAdornment: <InputAdornment>%</InputAdornment>,
+          }}
+          variant="outlined"
+					onChange={validateCustomField}
+        />
+			)}
 		</>
 	)
 }
