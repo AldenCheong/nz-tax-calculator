@@ -5,6 +5,7 @@ import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel, Te
 const KiwiSaver = ({ checked, onToggle, setRate }) => {
 	const [deductRate, setDeductRate] = useState(3);   
 	const [showCustom, setShowCustom] = useState(false);
+	const [customRate, setCustomRate] = useState(3);
 
 	const updateRate = (event) => {
 		const selectedValue = event.target.value;
@@ -18,7 +19,7 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
 		const MAX_RATE = 100;
 		const withRateLimit = (inputObj) => {
 			const { value } = inputObj;
-			if (value < MIN_RATE || value > MAX_RATE) return inputObj;
+			if (value >= MIN_RATE && value <= MAX_RATE) return inputObj;
 		}
 
 		return (
@@ -64,7 +65,6 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
           variant="outlined"
           label="Custom"
 					size="small"
-					defaultValue={1}
 					className="txt-custom-kiwisaver"
           InputProps={{
             endAdornment: <InputAdornment>%</InputAdornment>,
