@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField } from "@material-ui/core";
-import KiwiSaver from "./components/kiwisaver/kiwisaver-select";
+import KiwiSaver from "./components/kiwisaver/kiwisaver";
 
 import "./App.css";
 
