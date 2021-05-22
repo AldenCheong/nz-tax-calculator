@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel } from '@material-ui/core';
 
 const KiwiSaver = ({ checked, onToggle, setRate }) => {
-	let rate = 3;  
-	const setDeductRate = (event) => {
-		rate = event.target.value;
-		setRate(event.target.value);
+	const [deductRate, setDeductRate] = useState(3);   
+	const [showCustom, setShowCustom] = useState(false);
+
+	const updateRate = (event) => {
+		setDeductRate(event.target.value);
 	}
 
 	return (
@@ -17,7 +19,7 @@ const KiwiSaver = ({ checked, onToggle, setRate }) => {
 			/>
 			{checked && <FormControl variant="outlined" size="small">
 				<InputLabel>KiwiSaver%</InputLabel> 
-				<Select className="select" value={rate} label="KiwiSaver%" /*onChange={setDeductRate}*/>
+				<Select className="select" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
 					<MenuItem value={3}>3%</MenuItem>
 					<MenuItem value={4}>4%</MenuItem>
 					<MenuItem value={6}>6%</MenuItem>
