@@ -94,8 +94,10 @@ function App() {
 				<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={() => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include })}
-					setRate={(rate) => setKiwiSaver({ ...kiwiSaver, rate: rate })}
+					setKiwiSaverRate={(rate) => setKiwiSaver({ ...kiwiSaver, rate: rate })}
 				/>
+				<p>KiwiSave include: {kiwiSaver.include.toString()}</p>
+				<p>KiwiSave rate: {kiwiSaver.rate}</p>
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
