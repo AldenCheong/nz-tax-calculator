@@ -8,6 +8,10 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 	const [showCustom, setShowCustom] = useState(false);
 	const [customRate, setCustomRate] = useState();
 
+	useEffect(() => {
+		setKiwiSaverRate(DEFAULT_RATE);
+	}, []);
+
 	const updateRate = (event) => {
 		const selectedValue = event.target.value;
 		const isCustom = selectedValue === "Custom";
@@ -21,10 +25,6 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 		setCustomRate(inputValue);
 		setKiwiSaverRate(inputValue);
 	}
-
-	useEffect(() => {
-		setKiwiSaverRate(DEFAULT_RATE);
-	}, []);
 
 	return (
 		<>

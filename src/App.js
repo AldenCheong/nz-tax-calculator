@@ -3,6 +3,7 @@ import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField } from "@material-ui/core";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
+import calculateDeductables from "./helpers/calculateDeductables";
 
 import "./App.css";
 
@@ -34,57 +35,13 @@ function App() {
 	useEffect(() => {
 		const { tax, acc, kiwi } = deductable;
 		setTakeHomePay(income - tax - acc - kiwi);
-	}, [income, deductable]);
-	
-	const calculateDetails = (event) => {
-		const initialAmount = Number(event.target.value);
-		setIncome(initialAmount);
-		if (initialAmount <= 0) return;
+	}, [deductable, income]);
+  
+  useEffect(() => {
+    income > 0 && setDeductable(calculateDeductables(income, bracket, kiwiSaver));
+  }, [income, bracket, kiwiSaver])
 
-		const calculateTax = () => {
-			const taxBrackets = bracket.tax;
-			let remainder = initialAmount;
-			let taxAmount = 0;
-			for (let i = 0; i < taxBrackets.length; i++) {
-				const { threshold, rate } = taxBrackets[i];
-				const previousThreshold = i > 0 && taxBrackets[i - 1].threshold;
-
-				if (initialAmount <= threshold || i === taxBrackets.length - 1) {
-					if (previousThreshold) remainder -= previousThreshold;
-					taxAmount += remainder * (rate / 100);
-					break;
-				}
-
-				const currentBracket = previousThreshold
-					? threshold - previousThreshold
-					: threshold;
-				taxAmount += currentBracket * (rate / 100);
-			}
-
-			return taxAmount.toFixed(2);
-		};
-
-		const calculateAcc = () => {
-			const { threshold, rate } = bracket.acc;
-			return (
-				(initialAmount >= threshold ? threshold : initialAmount) *
-				(rate / 100)
-			).toFixed(2);
-		};
-
-    const calculateKiwiSaver = () => {
-      const { include, rate } = kiwiSaver;
-      if (!include) return 0;
-      return (initialAmount * rate / 100).toFixed(2);
-    }
-
-		setDeductable({
-			tax: calculateTax(),
-			acc: calculateAcc(),
-      kiwi: calculateKiwiSaver(),
-		});
-	};
-
+	const calculateDetails = (event) => setIncome(Number(event.target.value));
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
 
