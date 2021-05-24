@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NumberFormat from "react-number-format";
 import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel, TextField, InputAdornment } from '@material-ui/core';
 
 const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
-	const [deductRate, setDeductRate] = useState(3);   
+	const DEFAULT_RATE = 3;
+	const [deductRate, setDeductRate] = useState(DEFAULT_RATE);   
 	const [showCustom, setShowCustom] = useState(false);
 	const [customRate, setCustomRate] = useState();
 
@@ -21,6 +22,10 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 		setKiwiSaverRate(inputValue);
 	}
 
+	useEffect(() => {
+		setKiwiSaverRate(DEFAULT_RATE);
+	}, []);
+
 	return (
 		<>
 			<FormControlLabel 
@@ -32,7 +37,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 			{checked && <FormControl variant="outlined" size="small">
 				<InputLabel>KiwiSaver%</InputLabel> 
 				<Select className="select-kiwisaver" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
-					<MenuItem value={3}>3%</MenuItem>
+					<MenuItem value={DEFAULT_RATE}>{DEFAULT_RATE}%</MenuItem>
 					<MenuItem value={4}>4%</MenuItem>
 					<MenuItem value={6}>6%</MenuItem>
 					<MenuItem value={8}>8%</MenuItem>
@@ -42,7 +47,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 					</MenuItem>
 				</Select>
 			</FormControl>}
-			{showCustom && (
+			{checked && showCustom && (
 				<TextField
           variant="outlined"
           label="Custom"
