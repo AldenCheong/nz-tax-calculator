@@ -56,15 +56,15 @@ function App() {
 					label="Annual Income"
 					onChange={calculateDetails}
 				/>
-				<p>Tax Amount: {deductable?.tax}</p>
-				<p>ACC Amount: {deductable?.acc}</p>
 				<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={onToggleKiwiSaver}
 					setKiwiSaverRate={setKiwiSaverRate}
 				/>
-				<p>KiwiSave include: {kiwiSaver.include.toString()}</p>
 				<p>KiwiSave rate: {kiwiSaver.rate}</p>
+				<p>Tax Amount: {deductable?.tax}</p>
+				<p>ACC Amount: {deductable?.acc}</p>
+				<p>KiwiSaver Amount: {deductable?.kiwi}</p>
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
