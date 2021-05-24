@@ -32,10 +32,10 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		const { tax, acc } = deductable;
-		setTakeHomePay(income - tax - acc);
+		const { tax, acc, kiwi } = deductable;
+		setTakeHomePay(income - tax - acc - kiwi);
 	}, [income, deductable]);
-
+	
 	const calculateDetails = (event) => {
 		const initialAmount = Number(event.target.value);
 		setIncome(initialAmount);
@@ -72,11 +72,21 @@ function App() {
 			).toFixed(2);
 		};
 
+    const calculateKiwiSaver = () => {
+      const { include, rate } = kiwiSaver;
+      if (!include) return 0;
+      return (initialAmount * rate / 100).toFixed(2);
+    }
+
 		setDeductable({
 			tax: calculateTax(),
 			acc: calculateAcc(),
+      kiwi: calculateKiwiSaver(),
 		});
 	};
+
+  const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
+  const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
 
 	return (
 		<div className="App">
@@ -93,8 +103,8 @@ function App() {
 				<p>ACC Amount: {deductable?.acc}</p>
 				<KiwiSaver
 					checked={kiwiSaver.include}
-					onToggle={() => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include })}
-					setKiwiSaverRate={(rate) => setKiwiSaver({ ...kiwiSaver, rate: rate })}
+					onToggle={onToggleKiwiSaver}
+					setKiwiSaverRate={setKiwiSaverRate}
 				/>
 				<p>KiwiSave include: {kiwiSaver.include.toString()}</p>
 				<p>KiwiSave rate: {kiwiSaver.rate}</p>
