@@ -27,7 +27,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 	}
 
 	return (
-		<>
+		<div className="kiwisaver">
 			<FormControlLabel 
 				control={(
 					<Switch name="kiwiSaver" color="primary" checked={checked} onChange={onToggle}/>   
@@ -61,7 +61,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 					onChange={updateCustomRate}
         />
 			)}
-		</>
+		</div>
 	)
 }
 
