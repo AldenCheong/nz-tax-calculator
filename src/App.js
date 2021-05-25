@@ -73,9 +73,8 @@ function App() {
 					onToggle={onToggleKiwiSaver}
 					setKiwiSaverRate={setKiwiSaverRate}
 				/>
-				<p>KiwiSave rate: {kiwiSaver.rate}</p>
-				<div style={{ height: 300 }}>
-          <DataGrid rows={rows} columns={columns} />
+				<div className="data-grid">
+          <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
