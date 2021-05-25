@@ -39,7 +39,7 @@ function App() {
 	}, [deductable, income]);
   
   useEffect(() => {
-    income > 0 && setDeductable(calculateDeductables(income, bracket, kiwiSaver));
+    income >= 0 && setDeductable(calculateDeductables(income, bracket, kiwiSaver));
   }, [income, bracket, kiwiSaver])
 
 	const calculateDetails = (event) => setIncome(Number(event.target.value));

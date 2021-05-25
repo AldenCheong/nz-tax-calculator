@@ -1,5 +1,5 @@
 export default function calculateDeductables(initialAmount, bracket, kiwiSaver) {
-	if (initialAmount <= 0) return;
+	if (initialAmount < 0) return;
 
 	const calculateTax = () => {
 		const taxBrackets = bracket.tax;
