@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField } from "@material-ui/core";
+import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
 
@@ -45,6 +46,17 @@ function App() {
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
 
+  const rows = [
+    { id: 1, col1: "Tax", col2: deductable.tax },
+    { id: 2, col1: "Acc", col2: deductable.acc },
+    { id: 3, col1: "KiwiSaver", col2: deductable.kiwi },
+  ]
+
+  const columns = [
+    { field: "col1", headerName: "Deducted Variable", flex: 1 },
+    { field: "col2", headerName: "Deducted Amount", flex: 2 },
+  ]
+
 	return (
 		<div className="App">
 			<header className="App-header">
@@ -62,9 +74,9 @@ function App() {
 					setKiwiSaverRate={setKiwiSaverRate}
 				/>
 				<p>KiwiSave rate: {kiwiSaver.rate}</p>
-				<p>Tax Amount: {deductable?.tax}</p>
-				<p>ACC Amount: {deductable?.acc}</p>
-				<p>KiwiSaver Amount: {deductable?.kiwi}</p>
+				<div style={{ height: 300 }}>
+          <DataGrid rows={rows} columns={columns} />
+        </div>
 				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
