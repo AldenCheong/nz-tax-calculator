@@ -35,7 +35,7 @@ function App() {
 
 	useEffect(() => {
 		const { tax, acc, kiwi } = deductable;
-		setTakeHomePay(income - tax - acc - kiwi);
+		setTakeHomePay((income - tax - acc - kiwi).toFixed(2));
 	}, [deductable, income]);
   
   useEffect(() => {

@@ -10,6 +10,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 
 	useEffect(() => {
 		setKiwiSaverRate(DEFAULT_RATE);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const updateRate = (event) => {
@@ -17,7 +18,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 		const isCustom = selectedValue === "Custom";
 		setDeductRate(selectedValue);
 		setShowCustom(isCustom);
-		if (!isCustom) setKiwiSaverRate(selectedValue);
+		!isCustom && setKiwiSaverRate(selectedValue);
 	}
 
 	const updateCustomRate = (event) => { 
