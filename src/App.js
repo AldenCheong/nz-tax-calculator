@@ -23,12 +23,19 @@ function App() {
 		const fetchBracket = async () => {
 			const fetchTax = await fetch(host + "/tax-brackets");
 			const fetchAcc = await fetch(host + "/acc-bracket");
+			const fetchKiwiSaverRate = await fetch(host + "/kiwisaver-rate-option");
 			const taxBracket = await fetchTax.json();
 			const accBracket = await fetchAcc.json();
+      const kiwiSaverRateOptions = await fetchKiwiSaverRate.json();
 			setBracket({
 				tax: taxBracket,
 				acc: accBracket,
+        kiwiSaverOptions: kiwiSaverRateOptions,
 			});
+      setKiwiSaver({
+        include: false,
+        rate: kiwiSaverRateOptions[0],
+      })
 		};
 		fetchBracket();
 	}, []);
@@ -68,11 +75,12 @@ function App() {
 					label="Annual Income"
 					onChange={calculateDetails}
 				/>
-				<KiwiSaver
+				{bracket?.kiwiSaverOptions && (<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={onToggleKiwiSaver}
+          options={bracket.kiwiSaverOptions}
 					setKiwiSaverRate={setKiwiSaverRate}
-				/>
+				/>)}
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>

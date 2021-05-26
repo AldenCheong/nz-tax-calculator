@@ -1,17 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import NumberFormat from "react-number-format";
 import { Switch, FormControl, FormControlLabel, Select, MenuItem, InputLabel, TextField, InputAdornment } from '@material-ui/core';
 
-const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
-	const DEFAULT_RATE = 3;
-	const [deductRate, setDeductRate] = useState(DEFAULT_RATE);   
+const KiwiSaver = ({ checked, onToggle, options, setKiwiSaverRate }) => {
+	const [deductRate, setDeductRate] = useState(options[0]);   
 	const [showCustom, setShowCustom] = useState(false);
 	const [customRate, setCustomRate] = useState();
-
-	useEffect(() => {
-		setKiwiSaverRate(DEFAULT_RATE);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	const updateRate = (event) => {
 		const selectedValue = event.target.value;
@@ -27,6 +21,11 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 		setKiwiSaverRate(inputValue);
 	}
 
+	const setOptions = () => {
+		return (options.map((option) => (<MenuItem value={option}>{option}%</MenuItem>)))
+			.concat(<MenuItem value="Custom"><em>Custom</em></MenuItem>)
+	}
+
 	return (
 		<div className="kiwisaver">
 			<FormControlLabel 
@@ -38,14 +37,7 @@ const KiwiSaver = ({ checked, onToggle, setKiwiSaverRate }) => {
 			{checked && <FormControl variant="outlined" size="small">
 				<InputLabel>KiwiSaver%</InputLabel> 
 				<Select className="select-kiwisaver" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
-					<MenuItem value={DEFAULT_RATE}>{DEFAULT_RATE}%</MenuItem>
-					<MenuItem value={4}>4%</MenuItem>
-					<MenuItem value={6}>6%</MenuItem>
-					<MenuItem value={8}>8%</MenuItem>
-					<MenuItem value={10}>10%</MenuItem>
-					<MenuItem value="Custom">
-						<em>Custom</em>
-					</MenuItem>
+					{setOptions()}
 				</Select>
 			</FormControl>}
 			{checked && showCustom && (
@@ -90,6 +82,10 @@ const NumberFormatCustom = (props) => {
 			isAllowed={withRateLimit}
 		/>
 	);
+}
+
+KiwiSaver.defaultProps = {
+	options: [3, 4, 6, 8, 10]
 }
 
 export default KiwiSaver
