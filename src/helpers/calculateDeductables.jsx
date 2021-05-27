@@ -34,7 +34,7 @@ export default function calculateDeductables(initialAmount, bracket, kiwiSaver) 
 
 	const calculateKiwiSaver = () => {
 		const { include, rate } = kiwiSaver;
-		if (!include) return 0;
+		if (!include) return (0).toFixed(2);
 		return ((initialAmount * rate) / 100).toFixed(2);
 	};
 
