@@ -22,8 +22,8 @@ const KiwiSaver = ({ checked, onToggle, options, setKiwiSaverRate }) => {
 	}
 
 	const setOptions = () => {
-		return (options.map((option) => (<MenuItem key={option} value={option}>{option}%</MenuItem>)))
-			.concat(<MenuItem key={"Custom"} value="Custom"><em>Custom</em></MenuItem>)
+		return (options.concat("Custom"))
+			.map((option) => (<MenuItem key={option} value={option}>{option}%</MenuItem>));
 	}
 
 	return (
