@@ -57,6 +57,7 @@ function App() {
     { id: 1, variable: "Tax", monthly: (deductable.tax/12).toFixed(2), annually: deductable.tax },
     { id: 2, variable: "Acc", monthly: (deductable.acc/12).toFixed(2), annually: deductable.acc },
     { id: 3, variable: "KiwiSaver", monthly: (deductable.kiwi/12).toFixed(2), annually: deductable.kiwi },
+    { id: 4, variable: "Take Home Pay", monthly: (takeHomePay/12).toFixed(2), annually: takeHomePay },
   ]
 
   const columns = [
@@ -85,7 +86,6 @@ function App() {
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
-				<p>Take home pay: {takeHomePay}</p>
 				<img src={TaxBracket2021} alt="tax bracket" />
 				<img src={AccBracket2021} alt="acc bracket" />
 			</header>
