@@ -54,14 +54,15 @@ function App() {
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
 
   const rows = [
-    { id: 1, col1: "Tax", col2: deductable.tax },
-    { id: 2, col1: "Acc", col2: deductable.acc },
-    { id: 3, col1: "KiwiSaver", col2: deductable.kiwi },
+    { id: 1, variable: "Tax", monthly: (deductable.tax/12).toFixed(2), annually: deductable.tax },
+    { id: 2, variable: "Acc", monthly: (deductable.acc/12).toFixed(2), annually: deductable.acc },
+    { id: 3, variable: "KiwiSaver", monthly: (deductable.kiwi/12).toFixed(2), annually: deductable.kiwi },
   ]
 
   const columns = [
-    { field: "col1", headerName: "Deducted Variable", flex: 1 },
-    { field: "col2", headerName: "Deducted Amount", flex: 2 },
+    { field: "variable", headerName: "Deducted Variable", flex: 1 },
+    { field: "monthly", headerName: "Monthly", flex: 1 },
+    { field: "annually", headerName: "Annually", flex: 1 },
   ]
 
 	return (
