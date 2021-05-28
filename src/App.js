@@ -9,9 +9,9 @@ import calculateDeductables from "./helpers/calculateDeductables";
 import "./App.css";
 
 function App() {
-	const [income, setIncome] = useState();
-	const [deductable, setDeductable] = useState({});
-	const [bracket, setBracket] = useState();
+	const [income, setIncome] = useState(0);
+	const [deductable, setDeductable] = useState({ tax: 0, acc: 0, kiwi: 0 });
+	const [bracket, setBracket] = useState({ tax: [], acc: [] });
 	const [kiwiSaver, setKiwiSaver] = useState({
 		include: false,
 		rate: 0,
@@ -42,7 +42,7 @@ function App() {
 
 	useEffect(() => {
 		const { tax, acc, kiwi } = deductable;
-		setTakeHomePay((income - tax - acc - kiwi).toFixed(2));
+		setTakeHomePay(income - tax - acc - kiwi);
 	}, [deductable, income]);
   
   useEffect(() => {
@@ -57,11 +57,12 @@ function App() {
       hourly: (amount/(52*40)).toFixed(2),
       weekly: (amount/52).toFixed(2),
       monthly: (amount/12).toFixed(2),
-      annually: amount,
+      annually: Number(amount).toFixed(2),
     }
   }
 
   const rows = [
+    { id: 0, variable: "Income", ...getValues(income) },
     { id: 1, variable: "Tax", ...getValues(deductable.tax) },
     { id: 2, variable: "Acc", ...getValues(deductable.acc) },
     { id: 3, variable: "KiwiSaver", ...getValues(deductable.kiwi) },
@@ -69,7 +70,9 @@ function App() {
   ]
 
   const columns = [
-    { field: "variable", headerName: "Deducted Variable", flex: 1 },
+    { field: "variable", headerName: " ", flex: 1 },
+    { field: "hourly", headerName: "Hourly", flex: 1 },
+    { field: "weekly", headerName: "Weekly", flex: 1 },
     { field: "monthly", headerName: "Monthly", flex: 1 },
     { field: "annually", headerName: "Annually", flex: 1 },
   ]
