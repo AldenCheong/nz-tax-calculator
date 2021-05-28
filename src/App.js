@@ -52,12 +52,20 @@ function App() {
 	const calculateDetails = (event) => setIncome(Number(event.target.value));
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
+  const getValues = (amount) => {
+    return {
+      hourly: (amount/(52*40)).toFixed(2),
+      weekly: (amount/52).toFixed(2),
+      monthly: (amount/12).toFixed(2),
+      annually: amount,
+    }
+  }
 
   const rows = [
-    { id: 1, variable: "Tax", monthly: (deductable.tax/12).toFixed(2), annually: deductable.tax },
-    { id: 2, variable: "Acc", monthly: (deductable.acc/12).toFixed(2), annually: deductable.acc },
-    { id: 3, variable: "KiwiSaver", monthly: (deductable.kiwi/12).toFixed(2), annually: deductable.kiwi },
-    { id: 4, variable: "Take Home Pay", monthly: (takeHomePay/12).toFixed(2), annually: takeHomePay },
+    { id: 1, variable: "Tax", ...getValues(deductable.tax) },
+    { id: 2, variable: "Acc", ...getValues(deductable.acc) },
+    { id: 3, variable: "KiwiSaver", ...getValues(deductable.kiwi) },
+    { id: 4, variable: "Take Home Pay", ...getValues(takeHomePay) },
   ]
 
   const columns = [
