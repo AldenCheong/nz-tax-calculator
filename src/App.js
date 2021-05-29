@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
-import { TextField } from "@material-ui/core";
+import { TextField, Select, MenuItem, FormControl } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
+import IncomeFrequency from "./helpers/IncomeFrequencyEnum";
 
 import "./App.css";
 
 function App() {
 	const [income, setIncome] = useState(0);
+	const [incomeFrequency, setIncomeFrequency] = useState(IncomeFrequency.annually);
 	const [deductable, setDeductable] = useState({ tax: 0, acc: 0, kiwi: 0 });
 	const [bracket, setBracket] = useState({ tax: [], acc: [] });
 	const [kiwiSaver, setKiwiSaver] = useState({
@@ -51,7 +53,13 @@ function App() {
 
 	const calculateDetails = (event) => setIncome(Number(event.target.value));
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
+  const onSelectFrequency = (event) => setIncomeFrequency(event.target.value); 
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
+  const setIncomeFrequencyOptions = () => {
+    return Object.values(IncomeFrequency).map((frequency) => (
+      <MenuItem key={frequency} value={frequency}>{frequency}</MenuItem>
+    ))
+  }
   const getValues = (amount) => {
     return {
       hourly: (amount/(52*40)).toFixed(2),
@@ -85,9 +93,14 @@ function App() {
 					variant="outlined"
 					size="small"
 					color="secondary"
-					label="Annual Income"
+					label="Income"
 					onChange={calculateDetails}
 				/>
+        <FormControl variant="outlined" size="small">
+          <Select value={incomeFrequency} onChange={onSelectFrequency}>
+            {setIncomeFrequencyOptions()}
+          </Select>
+        </FormControl>
 				{bracket?.kiwiSaverOptions && (<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={onToggleKiwiSaver}
