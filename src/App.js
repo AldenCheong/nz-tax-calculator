@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
-import { TextField, Select, MenuItem, FormControl } from "@material-ui/core";
+import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
@@ -125,8 +125,15 @@ function App() {
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
-				<img src={TaxBracket2021} alt="tax bracket" />
-				<img src={AccBracket2021} alt="acc bracket" />
+        <Accordion>
+          <AccordionSummary>
+            Explanation
+          </AccordionSummary>
+          <AccordionDetails>
+            <img src={TaxBracket2021} alt="tax bracket" />
+            <img src={AccBracket2021} alt="acc bracket" />
+          </AccordionDetails>
+        </Accordion>
 			</header>
 		</div>
 	);
