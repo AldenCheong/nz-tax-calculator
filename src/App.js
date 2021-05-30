@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
+import { ExpandMore } from "@material-ui/icons";
 import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
@@ -126,12 +127,12 @@ function App() {
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
         <Accordion>
-          <AccordionSummary>
+          <AccordionSummary expandIcon={<ExpandMore />}>
             Explanation
           </AccordionSummary>
           <AccordionDetails>
-            <img src={TaxBracket2021} alt="tax bracket" />
-            <img src={AccBracket2021} alt="acc bracket" />
+            <div><img src={TaxBracket2021} alt="tax bracket" /></div>
+            <div><img src={AccBracket2021} alt="acc bracket" /></div>
           </AccordionDetails>
         </Accordion>
 			</header>
