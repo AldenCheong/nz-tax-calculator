@@ -17,11 +17,11 @@
 .data-grid .MuiDataGrid-row {
   color: red;
 }
-.data-grid .MuiDataGrid-row:first-child {
+.data-grid .MuiDataGrid-row[data-id="0"] {
   font-weight: bold;
   color: lightgreen;
 }
-.data-grid .MuiDataGrid-row:last-child {
+.data-grid .MuiDataGrid-row[data-id="4"] {
   font-weight: bold;
   color: blue;
 }

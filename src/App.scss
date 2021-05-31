@@ -17,12 +17,12 @@
   .MuiDataGrid-row {
     color: red;
 
-    &:first-child {
+    &[data-id="0"] {
       font-weight: bold;
       color: lightgreen;
     }
 
-    &:last-child {
+    &[data-id="4"] {
       font-weight: bold;
       color: blue;
     }
