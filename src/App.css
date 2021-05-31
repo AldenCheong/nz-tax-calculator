@@ -18,8 +18,7 @@
   color: red;
 }
 .data-grid .MuiDataGrid-row[data-id="0"] {
-  font-weight: bold;
-  color: lightgreen;
+  color: limegreen;
 }
 .data-grid .MuiDataGrid-row[data-id="4"] {
   font-weight: bold;
