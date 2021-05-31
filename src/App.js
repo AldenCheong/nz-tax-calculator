@@ -128,7 +128,7 @@ function App() {
         </div>
         <Accordion className="accordion-explanation">
           <AccordionSummary expandIcon={<ExpandMore />}>
-            Explanation
+            Fact Sheet
           </AccordionSummary>
           <AccordionDetails className="explanation-details">
             <div>
