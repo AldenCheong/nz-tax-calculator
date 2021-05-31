@@ -7,6 +7,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
 import IncomeFrequency from "./helpers/IncomeFrequencyEnum";
+import fetchConstants from "./helpers/fetchConstants";
 
 import "./App.css";
 
@@ -21,27 +22,21 @@ function App() {
 		rate: 0,
 	});
 	const [takeHomePay, setTakeHomePay] = useState();
-	const host = "http://localhost:5000";
 
 	useEffect(() => {
-		const fetchBracket = async () => {
-			const fetchTax = await fetch(host + "/tax-brackets");
-			const fetchAcc = await fetch(host + "/acc-bracket");
-			const fetchKiwiSaverRate = await fetch(host + "/kiwisaver-rate-option");
-			const taxBracket = await fetchTax.json();
-			const accBracket = await fetchAcc.json();
-      const kiwiSaverRateOptions = await fetchKiwiSaverRate.json();
-			setBracket({
-				tax: taxBracket,
-				acc: accBracket,
+    const asyncFetchConstant = async () => {
+      const { taxBracket, accBracket, kiwiSaverRateOptions } = await fetchConstants();
+      setBracket({
+        tax: taxBracket,
+        acc: accBracket,
         kiwiSaverOptions: kiwiSaverRateOptions,
-			});
+      });
       setKiwiSaver({
         include: false,
         rate: kiwiSaverRateOptions[0],
       })
-		};
-		fetchBracket();
+    }
+    asyncFetchConstant();
 	}, []);
 
 	useEffect(() => {
