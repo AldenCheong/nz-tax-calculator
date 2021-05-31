@@ -1,0 +1,25 @@
+.kiwisaver {
+	margin: 10px;
+}
+
+.select-kiwisaver {
+	min-width: 100px;
+	margin-right: 10px;
+}
+
+.txt-custom-kiwisaver {
+	max-width: 100px;
+}
+
+.data-grid {
+	max-width: 700px;
+}
+
+.accordion-explanation {
+	max-width: 700px;
+	margin-top: 10px;
+
+	.explanation-details {
+    flex-direction: column;
+	}
+}

@@ -126,13 +126,19 @@ function App() {
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
-        <Accordion>
+        <Accordion className="accordion-explanation">
           <AccordionSummary expandIcon={<ExpandMore />}>
             Explanation
           </AccordionSummary>
-          <AccordionDetails>
-            <div><img src={TaxBracket2021} alt="tax bracket" /></div>
-            <div><img src={AccBracket2021} alt="acc bracket" /></div>
+          <AccordionDetails className="explanation-details">
+            <div>
+              <p>Tax brackets:</p> 
+              <img src={TaxBracket2021} alt="tax bracket" />
+            </div>
+            <div>
+              <p>Acc limitation:</p>
+              <img src={AccBracket2021} alt="acc bracket" />
+            </div>
           </AccordionDetails>
         </Accordion>
 			</header>
