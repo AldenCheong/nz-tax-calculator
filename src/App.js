@@ -82,7 +82,7 @@ function App() {
   }
 
   const rows = [
-    { id: 0, variable: "Income", ...getValues(annualIncome) },
+    { id: 0, variable: "Gross Pay", ...getValues(annualIncome) },
     { id: 1, variable: "Tax", ...getValues(deductable.tax) },
     { id: 2, variable: "Acc", ...getValues(deductable.acc) },
     { id: 3, variable: "KiwiSaver", ...getValues(deductable.kiwi) },
@@ -125,7 +125,7 @@ function App() {
         </div>
         <Accordion className="accordion-explanation">
           <AccordionSummary expandIcon={<ExpandMore />}>
-            Fact Sheet
+            Reference
           </AccordionSummary>
           <AccordionDetails className="explanation-details">
             <div>
