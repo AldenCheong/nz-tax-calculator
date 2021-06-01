@@ -77,6 +77,7 @@ function App() {
       weekly: (amount/52).toFixed(2),
       monthly: (amount/12).toFixed(2),
       annually: Number(amount).toFixed(2),
+      percentage: amount > 0 ? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
     }
   }
 
@@ -94,6 +95,7 @@ function App() {
     { field: "weekly", headerName: "Weekly", flex: 1 },
     { field: "monthly", headerName: "Monthly", flex: 1 },
     { field: "annually", headerName: "Annually", flex: 1 },
+    { field: "percentage", headerName: "Approx. %", flex: 1 },
   ]
 
 	return (
