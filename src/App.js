@@ -77,7 +77,7 @@ function App() {
       weekly: (amount/52).toFixed(2),
       monthly: (amount/12).toFixed(2),
       annually: Number(amount).toFixed(2),
-      percentage: amount > 0 ? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
+      percentage: annualIncome? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
     }
   }
 
