@@ -14,6 +14,7 @@ import "./App.css";
 function App() {
 	const [incomeInput, setIncomeInput] = useState(0);
 	const [annualIncome, setAnnualIncome] = useState(0);
+	const [hourPerWeek, setHourPerWeek] = useState(40);
 	const [incomeFrequency, setIncomeFrequency] = useState(IncomeFrequency.annually);
 	const [deductable, setDeductable] = useState({ tax: 0, acc: 0, kiwi: 0 });
 	const [bracket, setBracket] = useState({ tax: [], acc: [] });
@@ -49,15 +50,19 @@ function App() {
   }, [annualIncome, bracket, kiwiSaver])
 
   const convertIncomeToAnnually = (income, frequency) => {
-    if (frequency === IncomeFrequency.hourly) income *= (52 * 40);
+    if (frequency === IncomeFrequency.hourly) income *= (52 * hourPerWeek);
     if (frequency === IncomeFrequency.weekly) income *= 52;
     if (frequency === IncomeFrequency.monthly) income *= 12;
     return income;
   }
 	const calculateIncome = (event) => {
-    const inputValue = Number(event.target.value);
-    setIncomeInput(inputValue);
-    setAnnualIncome(convertIncomeToAnnually(inputValue, incomeFrequency));
+    const newValue = Number(event.target.value);
+    setIncomeInput(newValue);
+    setAnnualIncome(convertIncomeToAnnually(newValue, incomeFrequency));
+  }
+  const updateHourPerWeek = (event) => {
+    const newValue = Number(event.target.value);
+    setHourPerWeek(newValue);
   }
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
   const onSelectFrequency = (event) => {
@@ -73,7 +78,7 @@ function App() {
   }
   const getValues = (amount) => {
     return {
-      hourly: (amount/(52*40)).toFixed(2),
+      hourly: (amount/(52*hourPerWeek)).toFixed(2),
       weekly: (amount/52).toFixed(2),
       monthly: (amount/12).toFixed(2),
       annually: Number(amount).toFixed(2),
@@ -114,6 +119,14 @@ function App() {
             {setIncomeFrequencyOptions()}
           </Select>
         </FormControl>
+        <TextField
+					variant="outlined"
+					size="small"
+					color="secondary"
+					label="Hour per week"
+          value={hourPerWeek}
+					onChange={updateHourPerWeek}
+				/>
 				{bracket?.kiwiSaverOptions && (<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={onToggleKiwiSaver}
