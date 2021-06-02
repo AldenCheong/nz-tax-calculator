@@ -34,11 +34,11 @@ $contentWidth: 1000px;
   }
 }
 
-.accordion-explanation {
+.accordion {
 	max-width: $contentWidth;
-	margin-top: 10px;
+	margin: 10px 0;
 
-	.explanation-details {
+	.accordion-details {
     flex-direction: column;
 	}
 }

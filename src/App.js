@@ -110,31 +110,38 @@ function App() {
             {setIncomeFrequencyOptions()}
           </Select>
         </FormControl>
-				{bracket?.kiwiSaverOptions && (<KiwiSaver
-					checked={kiwiSaver.include}
-					onToggle={onToggleKiwiSaver}
-          options={bracket.kiwiSaverOptions}
-					setKiwiSaverRate={setKiwiSaverRate}
-				/>)}
-        <div className="div-hourperweek">
-          <TextField
-            variant="outlined"
-            size="small"
-            color="secondary"
-            className="txt-hourperweek"
-            label="Hour per week"
-            value={hourPerWeek}
-            onChange={updateHourPerWeek}
-          />
-        </div>
+        <Accordion className="accordion">
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            Options
+          </AccordionSummary>
+          <AccordionDetails className="accordion-details">
+            {bracket?.kiwiSaverOptions && (<KiwiSaver
+              checked={kiwiSaver.include}
+              onToggle={onToggleKiwiSaver}
+              options={bracket.kiwiSaverOptions}
+              setKiwiSaverRate={setKiwiSaverRate}
+            />)}
+            <div className="div-hourperweek">
+              <TextField
+                variant="outlined"
+                size="small"
+                color="secondary"
+                className="txt-hourperweek"
+                label="Hour per week"
+                value={hourPerWeek}
+                onChange={updateHourPerWeek}
+              />
+            </div>
+          </AccordionDetails>
+        </Accordion>
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
-        <Accordion className="accordion-explanation">
+        <Accordion className="accordion">
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference
           </AccordionSummary>
-          <AccordionDetails className="explanation-details">
+          <AccordionDetails className="accordion-details">
             <div>
               <p>Tax brackets:</p> 
               <img src={TaxBracket2021} alt="tax bracket" />

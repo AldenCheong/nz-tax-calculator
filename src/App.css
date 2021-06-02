@@ -29,11 +29,11 @@
   color: blue;
 }
 
-.accordion-explanation {
+.accordion {
   max-width: 1000px;
-  margin-top: 10px;
+  margin: 10px 0;
 }
-.accordion-explanation .explanation-details {
+.accordion .accordion-details {
   flex-direction: column;
 }
 
