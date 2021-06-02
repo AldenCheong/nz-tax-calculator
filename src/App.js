@@ -60,10 +60,7 @@ function App() {
     setIncomeInput(newValue);
     setAnnualIncome(convertIncomeToAnnually(newValue, incomeFrequency));
   }
-  const updateHourPerWeek = (event) => {
-    const newValue = Number(event.target.value);
-    setHourPerWeek(newValue);
-  }
+  const updateHourPerWeek = (event) => setHourPerWeek(event.target.value);
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
   const onSelectFrequency = (event) => {
     const frequency = event.target.value;
