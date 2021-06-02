@@ -110,20 +110,23 @@ function App() {
             {setIncomeFrequencyOptions()}
           </Select>
         </FormControl>
-        <TextField
-					variant="outlined"
-					size="small"
-					color="secondary"
-					label="Hour per week"
-          value={hourPerWeek}
-					onChange={updateHourPerWeek}
-				/>
 				{bracket?.kiwiSaverOptions && (<KiwiSaver
 					checked={kiwiSaver.include}
 					onToggle={onToggleKiwiSaver}
           options={bracket.kiwiSaverOptions}
 					setKiwiSaverRate={setKiwiSaverRate}
 				/>)}
+        <div className="div-hourperweek">
+          <TextField
+            variant="outlined"
+            size="small"
+            color="secondary"
+            className="txt-hourperweek"
+            label="Hour per week"
+            value={hourPerWeek}
+            onChange={updateHourPerWeek}
+          />
+        </div>
 				<div className="data-grid">
           <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
