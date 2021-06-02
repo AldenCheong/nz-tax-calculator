@@ -49,24 +49,18 @@ function App() {
     annualIncome >= 0 && setDeductable(calculateDeductables(annualIncome, bracket, kiwiSaver));
   }, [annualIncome, bracket, kiwiSaver])
 
-  const convertIncomeToAnnually = (income, frequency) => {
-    if (frequency === IncomeFrequency.hourly) income *= (52 * hourPerWeek);
-    if (frequency === IncomeFrequency.weekly) income *= 52;
-    if (frequency === IncomeFrequency.monthly) income *= 12;
-    return income;
-  }
-	const calculateIncome = (event) => {
-    const newValue = Number(event.target.value);
-    setIncomeInput(newValue);
-    setAnnualIncome(convertIncomeToAnnually(newValue, incomeFrequency));
-  }
+  useEffect(() => {
+    let income = incomeInput;
+    if (incomeFrequency === IncomeFrequency.hourly) income *= (52 * hourPerWeek);
+    if (incomeFrequency === IncomeFrequency.weekly) income *= 52;
+    if (incomeFrequency === IncomeFrequency.monthly) income *= 12;
+    setAnnualIncome(income);
+  }, [incomeInput, hourPerWeek, incomeFrequency])
+  
+	const calculateIncome = (event) => setIncomeInput(Number(event.target.value));
   const updateHourPerWeek = (event) => setHourPerWeek(event.target.value);
+  const onSelectFrequency = (event) => setIncomeFrequency(event.target.value);
   const onToggleKiwiSaver = () => setKiwiSaver({ ...kiwiSaver, include: !kiwiSaver.include });
-  const onSelectFrequency = (event) => {
-    const frequency = event.target.value;
-    setIncomeFrequency(frequency); 
-    setAnnualIncome(convertIncomeToAnnually(incomeInput, frequency));
-  }
   const setKiwiSaverRate = (rate) => setKiwiSaver({ ...kiwiSaver, rate: rate });
   const setIncomeFrequencyOptions = () => {
     return Object.values(IncomeFrequency).map((frequency) => (
