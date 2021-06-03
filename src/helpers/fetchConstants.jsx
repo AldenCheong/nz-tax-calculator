@@ -1,5 +1,5 @@
 const fetchConstants = async () => {
-	const host = "http://localhost:5000";
+	const host = "https://my-json-server.typicode.com/aldencheong/nz-tax-calculator";
   const fetchTax = await fetch(host + "/tax-brackets");
   const fetchAcc = await fetch(host + "/acc-bracket");
   const fetchKiwiSaverRate = await fetch(host + "/kiwisaver-rate-option");
