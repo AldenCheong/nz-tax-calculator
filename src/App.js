@@ -10,6 +10,15 @@ import IncomeFrequency from "./helpers/IncomeFrequencyEnum";
 import fetchConstants from "./helpers/fetchConstants";
 
 import "./App.css";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: 'cornsilk',
+    margin: '25px auto',
+    maxWidth: 1000,
+  },
+});
 
 function App() {
 	const [incomeInput, setIncomeInput] = useState(0);
@@ -23,6 +32,7 @@ function App() {
 		rate: 0,
 	});
 	const [takeHomePay, setTakeHomePay] = useState();
+  const styles = useStyles();
 
 	useEffect(() => {
     const asyncFetchConstant = async () => {
@@ -95,7 +105,7 @@ function App() {
   ]
 
 	return (
-		<Card className="App" variant="outlined">
+		<Card className={styles.root} variant="outlined">
       <CardContent>
         <header className="App-header">
           <p>Tax Calculator</p>
