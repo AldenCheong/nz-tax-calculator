@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TaxBracket2021 from "./images/TaxBracket-1stApril2021.png";
 import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
-import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, AccordionDetails } from "@material-ui/core";
+import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, AccordionDetails, Card, CardContent } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver/kiwisaver";
@@ -95,9 +95,11 @@ function App() {
   ]
 
 	return (
-		<div className="App">
-			<header className="App-header">
-				<p>Tax Calculator</p>
+		<Card className="App" variant="outlined">
+      <CardContent>
+        <header className="App-header">
+          <p>Tax Calculator</p>
+        </header>
 				<TextField
 					variant="outlined"
 					size="small"
@@ -152,8 +154,8 @@ function App() {
             </div>
           </AccordionDetails>
         </Accordion>
-			</header>
-		</div>
+      </CardContent>
+		</Card>
 	);
 }
 

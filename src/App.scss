@@ -1,4 +1,7 @@
-$contentWidth: 1000px;
+.App {
+  max-width: 1000px;
+  margin: 25px auto;
+}
 
 .txt-hourperweek {
   max-width: 110px;
@@ -18,7 +21,6 @@ $contentWidth: 1000px;
 }
 
 .data-grid {
-	max-width: $contentWidth;
 
   .MuiDataGrid-row {
     color: red;
@@ -35,7 +37,6 @@ $contentWidth: 1000px;
 }
 
 .accordion {
-	max-width: $contentWidth;
 	margin: 10px 0;
 
 	.accordion-details {
