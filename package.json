@@ -1,5 +1,5 @@
 {
-  "homepage": "https://aldencheong.github.io/nz-tax-calculator",
+  "homepage": "https://aldencheong.github.io/",
   "name": "nz-tax-calculator",
   "version": "0.1.0",
   "private": true,
@@ -18,8 +18,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "predeploy": "yarn build",
-    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
