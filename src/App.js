@@ -95,6 +95,30 @@ function App() {
     { id: 4, variable: "Take Home Pay", ...getValues(takeHomePay) },
   ]
 
+  const populateDataRows = () => {
+    const { tax, acc, kiwi } = deductable;
+    const potentialRows = [
+      { label: "Gross Pay", value: annualIncome },
+      { label: "Tax", value: tax },
+      { label: "Acc", value: acc },
+      { label: "KiwiSaver", value: kiwi },
+      { label: "Take Home Pay", value: takeHomePay },
+    ]
+    const setWithTemplate = (index, label, value) => {
+      return {
+        id: index,
+        variable: label,
+        ...getValues(value)
+      }
+    }
+    return potentialRows.map((row, index) => {
+      if (row.label === "KiwiSaver" && !kiwiSaver.include) {
+        return; 
+      }
+      return setWithTemplate(index, row.label, row.value);
+    }).filter(x => x); // filter to get only those with values
+  }
+
   const columns = [
     { field: "variable", headerName: " ", flex: 1 },
     { field: "hourly", headerName: "Hourly", flex: 1 },
@@ -147,7 +171,7 @@ function App() {
           </AccordionDetails>
         </Accordion>
 				<div className="data-grid">
-          <DataGrid rows={rows} columns={columns} hideFooter="true" autoHeight="true" />
+          <DataGrid rows={populateDataRows()} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
         <Accordion className="accordion">
           <AccordionSummary expandIcon={<ExpandMore />}>
