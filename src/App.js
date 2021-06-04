@@ -118,7 +118,7 @@ function App() {
 					onChange={calculateIncome}
 				/>
         <FormControl variant="outlined" size="small">
-          <Select value={incomeFrequency} onChange={onSelectFrequency}>
+          <Select value={incomeFrequency} color="secondary" onChange={onSelectFrequency}>
             {setIncomeFrequencyOptions()}
           </Select>
         </FormControl>

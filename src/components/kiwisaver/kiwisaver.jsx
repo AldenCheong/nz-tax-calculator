@@ -30,19 +30,20 @@ const KiwiSaver = ({ checked, onToggle, options, setKiwiSaverRate }) => {
 		<div className="kiwisaver">
 			<FormControlLabel 
 				control={(
-					<Switch name="kiwiSaver" color="primary" checked={checked} onChange={onToggle}/>   
+					<Switch name="kiwiSaver" color="secondary" checked={checked} onChange={onToggle}/>   
 				)}
 				label="KiwiSaver"
 			/>
 			{checked && <FormControl variant="outlined" size="small">
 				<InputLabel>KiwiSaver%</InputLabel> 
-				<Select className="select-kiwisaver" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
+				<Select className="select-kiwisaver" color="secondary" value={deductRate} label="KiwiSaver%" onChange={updateRate}>
 					{setOptions()}
 				</Select>
 			</FormControl>}
 			{checked && showCustom && (
 				<TextField
           variant="outlined"
+					color="secondary"
           label="Custom"
 					size="small"
 					value={customRate}
