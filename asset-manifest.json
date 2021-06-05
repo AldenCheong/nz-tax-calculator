@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/nz-tax-calculator/static/css/main.13ea199e.chunk.css",
-    "main.js": "/nz-tax-calculator/static/js/main.7052896e.chunk.js",
-    "main.js.map": "/nz-tax-calculator/static/js/main.7052896e.chunk.js.map",
+    "main.css": "/nz-tax-calculator/static/css/main.49a6664e.chunk.css",
+    "main.js": "/nz-tax-calculator/static/js/main.0ca05b1c.chunk.js",
+    "main.js.map": "/nz-tax-calculator/static/js/main.0ca05b1c.chunk.js.map",
     "runtime-main.js": "/nz-tax-calculator/static/js/runtime-main.030416f7.js",
     "runtime-main.js.map": "/nz-tax-calculator/static/js/runtime-main.030416f7.js.map",
-    "static/js/2.c368f581.chunk.js": "/nz-tax-calculator/static/js/2.c368f581.chunk.js",
-    "static/js/2.c368f581.chunk.js.map": "/nz-tax-calculator/static/js/2.c368f581.chunk.js.map",
+    "static/js/2.996e04e1.chunk.js": "/nz-tax-calculator/static/js/2.996e04e1.chunk.js",
+    "static/js/2.996e04e1.chunk.js.map": "/nz-tax-calculator/static/js/2.996e04e1.chunk.js.map",
     "static/js/3.36529d94.chunk.js": "/nz-tax-calculator/static/js/3.36529d94.chunk.js",
     "static/js/3.36529d94.chunk.js.map": "/nz-tax-calculator/static/js/3.36529d94.chunk.js.map",
     "index.html": "/nz-tax-calculator/index.html",
-    "static/css/main.13ea199e.chunk.css.map": "/nz-tax-calculator/static/css/main.13ea199e.chunk.css.map",
-    "static/js/2.c368f581.chunk.js.LICENSE.txt": "/nz-tax-calculator/static/js/2.c368f581.chunk.js.LICENSE.txt",
+    "static/css/main.49a6664e.chunk.css.map": "/nz-tax-calculator/static/css/main.49a6664e.chunk.css.map",
+    "static/js/2.996e04e1.chunk.js.LICENSE.txt": "/nz-tax-calculator/static/js/2.996e04e1.chunk.js.LICENSE.txt",
     "static/media/TaxBracket-1stApril2021.e201c526.png": "/nz-tax-calculator/static/media/TaxBracket-1stApril2021.e201c526.png"
   },
   "entrypoints": [
     "static/js/runtime-main.030416f7.js",
-    "static/js/2.c368f581.chunk.js",
-    "static/css/main.13ea199e.chunk.css",
-    "static/js/main.7052896e.chunk.js"
+    "static/js/2.996e04e1.chunk.js",
+    "static/css/main.49a6664e.chunk.css",
+    "static/js/main.0ca05b1c.chunk.js"
   ]
 }
