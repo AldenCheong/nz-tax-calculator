@@ -13,11 +13,19 @@ import "./App.css";
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  root: {
+  card: {
     backgroundColor: 'cornsilk',
     margin: '25px auto',
     maxWidth: 1000,
   },
+  accordion: {
+    backgroundColor: 'transparent',
+    margin: '16px 0',
+    borderRadius: 5,
+  },
+  accordionDetails: {
+    flexDirection: 'column',
+  }
 });
 
 function App() {
@@ -103,10 +111,10 @@ function App() {
         ...getValues(value)
       }
     }
-    
+
     return potentialRows.map((row, index) => {
       if (row.label === "KiwiSaver" && !kiwiSaver.include) {
-        return; 
+        return false; 
       }
       return setWithTemplate(index, row.label, row.value);
     }).filter(x => x); // filter to get only those with values
@@ -122,7 +130,7 @@ function App() {
   ]
 
 	return (
-		<Card className={styles.root} variant="outlined">
+		<Card className={styles.card} variant="outlined">
       <CardContent>
         <header className="App-header">
           <p>Tax Calculator</p>
@@ -139,11 +147,11 @@ function App() {
             {setIncomeFrequencyOptions()}
           </Select>
         </FormControl>
-        <Accordion className="accordion">
+        <Accordion className={styles.accordion}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Options
           </AccordionSummary>
-          <AccordionDetails className="accordion-details">
+          <AccordionDetails className={styles.accordionDetails}>
             {bracket?.kiwiSaverOptions && (<KiwiSaver
               checked={kiwiSaver.include}
               onToggle={onToggleKiwiSaver}
@@ -166,11 +174,11 @@ function App() {
 				<div className="data-grid">
           <DataGrid rows={populateDataRows()} columns={columns} hideFooter="true" autoHeight="true" />
         </div>
-        <Accordion className="accordion">
+        <Accordion className={styles.accordion}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference
           </AccordionSummary>
-          <AccordionDetails className="accordion-details">
+          <AccordionDetails className={styles.accordionDetails}>
             <div>
               <p>Tax brackets:</p> 
               <img src={TaxBracket2021} alt="tax bracket" />

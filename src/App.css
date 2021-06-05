@@ -30,11 +30,4 @@ html {
   color: blue;
 }
 
-.accordion {
-  margin: 10px 0;
-}
-.accordion .accordion-details {
-  flex-direction: column;
-}
-
 /*# sourceMappingURL=App.css.map */
