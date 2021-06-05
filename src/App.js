@@ -84,6 +84,7 @@ function App() {
     let income = incomeInput;
     if (incomeFrequency === IncomeFrequency.hourly) income *= (52 * hourPerWeek);
     if (incomeFrequency === IncomeFrequency.weekly) income *= 52;
+    if (incomeFrequency === IncomeFrequency.fortnightly) income *= 26;
     if (incomeFrequency === IncomeFrequency.monthly) income *= 12;
     setAnnualIncome(income);
   }, [incomeInput, hourPerWeek, incomeFrequency])
