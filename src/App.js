@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   card: {
     backgroundColor: 'cornsilk',
     margin: '25px auto',
-    maxWidth: 1000,
+    maxWidth: 1100,
   },
   accordion: {
     backgroundColor: 'transparent',
@@ -102,6 +102,7 @@ function App() {
     return {
       hourly: (amount/(52*hourPerWeek)).toFixed(2),
       weekly: (amount/52).toFixed(2),
+      fortnightly: (amount/26).toFixed(2),
       monthly: (amount/12).toFixed(2),
       annually: Number(amount).toFixed(2),
       percentage: annualIncome? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
@@ -137,6 +138,7 @@ function App() {
     { field: "variable", headerName: " ", flex: 1 },
     { field: "hourly", headerName: "Hourly", flex: 1 },
     { field: "weekly", headerName: "Weekly", flex: 1 },
+    { field: "fortnightly", headerName: "Fortnightly", flex: 1 },
     { field: "monthly", headerName: "Monthly", flex: 1 },
     { field: "annually", headerName: "Annually", flex: 1 },
     { field: "percentage", headerName: "Approx. %", flex: 1 },
