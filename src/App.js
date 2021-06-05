@@ -87,14 +87,6 @@ function App() {
     }
   }
 
-  const rows = [
-    { id: 0, variable: "Gross Pay", ...getValues(annualIncome) },
-    { id: 1, variable: "Tax", ...getValues(deductable.tax) },
-    { id: 2, variable: "Acc", ...getValues(deductable.acc) },
-    { id: 3, variable: "KiwiSaver", ...getValues(deductable.kiwi) },
-    { id: 4, variable: "Take Home Pay", ...getValues(takeHomePay) },
-  ]
-
   const populateDataRows = () => {
     const { tax, acc, kiwi } = deductable;
     const potentialRows = [
@@ -111,6 +103,7 @@ function App() {
         ...getValues(value)
       }
     }
+    
     return potentialRows.map((row, index) => {
       if (row.label === "KiwiSaver" && !kiwiSaver.include) {
         return; 
