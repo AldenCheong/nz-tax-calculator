@@ -19,15 +19,4 @@ html {
   max-width: 100px;
 }
 
-.data-grid .MuiDataGrid-row {
-  color: red;
-}
-.data-grid .MuiDataGrid-row[data-id="0"] {
-  color: limegreen;
-}
-.data-grid .MuiDataGrid-row[data-id="4"] {
-  font-weight: bold;
-  color: blue;
-}
-
 /*# sourceMappingURL=App.css.map */

@@ -25,6 +25,19 @@ const useStyles = makeStyles({
   },
   accordionDetails: {
     flexDirection: 'column',
+  },
+  dataGrid: {
+    backgroundColor: '#fffdfa',
+    "& .row-positive": {
+      backgroundColor: "palegreen",
+    }, 
+    "& .row-negative": {
+      backgroundColor: "lightpink",
+    }, 
+    "& .row-neutral": {
+      backgroundColor: "lightskyblue",
+      fontWeight: 'bold',
+    }, 
   }
 });
 
@@ -129,6 +142,13 @@ function App() {
     { field: "percentage", headerName: "Approx. %", flex: 1 },
   ]
 
+  const mainGridGetRowClassName = (params) => {
+    const variable = params.getValue(params.id, "variable");
+    if (variable === "Gross Pay") return "row-positive";
+    if (variable === "Take Home Pay") return "row-neutral";
+    return "row-negative";
+  }
+
 	return (
 		<Card className={styles.card} variant="outlined">
       <CardContent>
@@ -171,8 +191,14 @@ function App() {
             </div>
           </AccordionDetails>
         </Accordion>
-				<div className="data-grid">
-          <DataGrid rows={populateDataRows()} columns={columns} hideFooter="true" autoHeight="true" />
+				<div className={styles.dataGrid}>
+          <DataGrid 
+            rows={populateDataRows()} 
+            columns={columns} 
+            hideFooter="true" 
+            autoHeight="true" 
+            getRowClassName={mainGridGetRowClassName}
+          />
         </div>
         <Accordion className={styles.accordion}>
           <AccordionSummary expandIcon={<ExpandMore />}>

@@ -20,19 +20,3 @@ html {
 .txt-custom-kiwisaver {
 	max-width: 100px;
 }
-
-.data-grid {
-
-  .MuiDataGrid-row {
-    color: red;
-
-    &[data-id="0"] {
-      color: limegreen;
-    }
-
-    &[data-id="4"] {
-      font-weight: bold;
-      color: blue;
-    }
-  }
-}
