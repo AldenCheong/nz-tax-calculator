@@ -3,7 +3,7 @@ import * as ChartJs from "chart.js";
 
 ChartJs.Chart.register.apply(
   null,
-  Object.values(ChartJs).filter((chartClass) => chartClass.id),
+  Object.values(ChartJs).filter(chartClass => chartClass.id),
 )
 
 const DetailDonutChart = () => {
@@ -14,19 +14,19 @@ const DetailDonutChart = () => {
       type: "doughnut",
       data: {
         labels: [
-          'Red',
-          'Blue',
-          'Yellow'
+          'Negative',
+          'Neutral',
+          'Positive'
         ],
         datasets: [{
           label: 'My First Dataset',
           data: [300, 50, 100],
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
+            'lightpink',
+            'lightskyblue',
+            'palegreen'
           ],
-          hoverOffset: 4
+          hoverOffset: 15
         }]
       },
     });

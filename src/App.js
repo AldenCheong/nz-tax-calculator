@@ -39,7 +39,7 @@ const useStyles = makeStyles({
       backgroundColor: "lightskyblue",
       fontWeight: 'bold',
     }, 
-  }
+  },
 });
 
 function App() {
