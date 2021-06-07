@@ -5,6 +5,7 @@ import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, 
 import { ExpandMore } from "@material-ui/icons";
 import { DataGrid } from "@material-ui/data-grid";
 import KiwiSaver from "./components/kiwisaver";
+import DetailDonutChart from "./components/DetailDonutChart";
 import calculateDeductables from "./helpers/calculateDeductables";
 import IncomeFrequency from "./helpers/IncomeFrequencyEnum";
 import fetchConstants from "./helpers/fetchConstants";
@@ -203,6 +204,7 @@ function App() {
             getRowClassName={mainGridGetRowClassName}
           />
         </div>
+        <DetailDonutChart />
         <Accordion className={styles.accordion}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference
