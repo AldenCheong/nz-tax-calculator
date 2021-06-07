@@ -1,5 +1,13 @@
 import { Doughnut } from 'react-chartjs-2';
 
+const styles = {
+  donutChart: {
+    width: 250,
+    height: 250,
+    padding: 25,
+  },
+}
+
 const DetailDonutChart = () => {
   const data = {
     labels: [
@@ -20,7 +28,9 @@ const DetailDonutChart = () => {
   }
 
   return (
-    <Doughnut data={data} />
+    <div style={styles.donutChart}>
+      <Doughnut data={data} />
+    </div>
   )
 }
 
