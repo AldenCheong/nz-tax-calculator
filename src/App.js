@@ -4,7 +4,7 @@ import AccBracket2021 from "./images/AccBracket-1stApril2021.png";
 import { TextField, Select, MenuItem, FormControl, Accordion, AccordionSummary, AccordionDetails, Card, CardContent } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { DataGrid } from "@material-ui/data-grid";
-import KiwiSaver from "./components/kiwisaver/kiwisaver";
+import KiwiSaver from "./components/kiwisaver";
 import calculateDeductables from "./helpers/calculateDeductables";
 import IncomeFrequency from "./helpers/IncomeFrequencyEnum";
 import fetchConstants from "./helpers/fetchConstants";
