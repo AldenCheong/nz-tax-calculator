@@ -2,9 +2,8 @@ import { Doughnut } from 'react-chartjs-2';
 
 const styles = {
   donutChart: {
-    width: 250,
-    height: 250,
-    padding: 25,
+    width: 400,
+    height: 400,
   },
 }
 
@@ -30,6 +29,14 @@ const DetailDonutChart = () => {
     plugins: {
       legend: {
         display: false,
+      }
+    },
+    layout: {
+      padding: {
+          left: 20,
+          right: 20,
+          top: 20,
+          bottom: 20
       }
     }
   }
