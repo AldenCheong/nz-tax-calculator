@@ -16,20 +16,27 @@ const DetailDonutChart = () => {
       'Positive'
     ],
     datasets: [{
-      label: 'My First Dataset',
       data: [300, 50, 100],
       backgroundColor: [
         'lightpink',
         'lightskyblue',
         'palegreen'
       ],
-      hoverOffset: 15
+      hoverOffset: 5
     }]
+  }
+
+  const options = {
+    plugins: {
+      legend: {
+        display: false,
+      }
+    }
   }
 
   return (
     <div style={styles.donutChart}>
-      <Doughnut data={data} />
+      <Doughnut data={data} options={options} />
     </div>
   )
 }
