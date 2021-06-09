@@ -204,7 +204,7 @@ function App() {
             getRowClassName={mainGridGetRowClassName}
           />
         </div>
-        <DetailDonutChart />
+        {annualIncome > 0 && <DetailDonutChart data={populateDataRows()}/>}
         <Accordion className={styles.accordion}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference

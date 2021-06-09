@@ -7,13 +7,23 @@ const styles = {
 	},
 };
 
-const DetailDonutChart = () => {
-	const data = {
-		labels: ["Negative", "Neutral", "Positive"],
+const DetailDonutChart = ({ data }) => {
+  let labels = []
+  let annuallies = []
+  let colors = []
+  data.forEach((row) => {
+    if (row.variable === "Gross Pay") return;
+    labels.push(row.variable)
+    annuallies.push(row.annually)
+    colors.push(row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink")
+  })
+
+	const processedData = {
+		labels: labels,
 		datasets: [
 			{
-				data: [300, 50, 100],
-				backgroundColor: ["lightpink", "lightskyblue", "palegreen"],
+				data: annuallies,
+				backgroundColor: colors,
 				hoverOffset: 5,
 			},
 		],
@@ -37,7 +47,7 @@ const DetailDonutChart = () => {
 
 	return (
 		<div style={styles.donutChart}>
-			<Doughnut data={data} options={options} />
+			<Doughnut data={processedData} options={options} />
 		</div>
 	);
 };
