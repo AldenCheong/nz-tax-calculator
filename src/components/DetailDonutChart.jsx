@@ -38,6 +38,13 @@ const DetailDonutChart = ({ chartData }) => {
 			legend: {
 				display: false,
 			},
+      tooltip: {
+        callbacks: {
+          label: (tooltipItem) => {
+            return `${tooltipItem.label}: ${tooltipItem.raw} (${percentages[tooltipItem.dataIndex]})`;
+          },
+        },
+      },
 		},
 		layout: {
 			padding: {
@@ -47,13 +54,6 @@ const DetailDonutChart = ({ chartData }) => {
 				bottom: 20,
 			},
 		},
-		plugins: {
-      tooltip: {
-        callbacks: {
-          label: () => "test",
-        },
-      },
-    },
 	};
 
 	return (
