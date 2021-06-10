@@ -40,9 +40,7 @@ const DetailDonutChart = ({ chartData }) => {
 			},
       tooltip: {
         callbacks: {
-          label: (tooltipItem) => {
-            return `${tooltipItem.label}: ${tooltipItem.raw} (${percentages[tooltipItem.dataIndex]})`;
-          },
+          label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw} (${percentages[tooltipItem.dataIndex]})`,
         },
       },
 		},
