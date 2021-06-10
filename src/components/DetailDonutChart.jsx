@@ -7,16 +7,20 @@ const styles = {
 	},
 };
 
-const DetailDonutChart = ({ data }) => {
-  let labels = []
-  let annuallies = []
-  let colors = []
-  data.forEach((row) => {
-    if (row.variable === "Gross Pay") return;
-    labels.push(row.variable)
-    annuallies.push(row.annually)
-    colors.push(row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink")
-  })
+const DetailDonutChart = ({ chartData }) => {
+	let labels = [];
+	let annuallies = [];
+	let percentages = [];
+	let colors = [];
+	chartData.forEach((row) => {
+		if (row.variable === "Gross Pay") return;
+		labels.push(row.variable);
+		annuallies.push(row.annually);
+		percentages.push(row.percentage);
+		colors.push(
+			row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink"
+		);
+	});
 
 	const processedData = {
 		labels: labels,
@@ -43,6 +47,13 @@ const DetailDonutChart = ({ data }) => {
 				bottom: 20,
 			},
 		},
+		plugins: {
+      tooltip: {
+        callbacks: {
+          label: () => "test",
+        },
+      },
+    },
 	};
 
 	return (
