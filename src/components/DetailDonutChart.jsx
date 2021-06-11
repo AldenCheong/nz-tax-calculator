@@ -4,7 +4,24 @@ const styles = {
 	donutChart: {
 		width: 400,
 		height: 400,
+    position: 'relative',
 	},
+  chartInner: {
+    position: 'absolute',
+    top: '43%',
+    left: '30%',
+    right: '30%',
+    textAlign: 'center',
+    backgroundColor: 'cornsilk',
+  },
+  chartStatus: {
+    fontWeight: 'bold',
+    fontSize: 18
+  },
+  chartValue: {
+    fontWeight: 'bold',
+    color: 'goldenrod'
+  }
 };
 
 const DetailDonutChart = ({ chartData }) => {
@@ -21,6 +38,8 @@ const DetailDonutChart = ({ chartData }) => {
 			row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink"
 		);
 	});
+
+  const getGrossPayData = () => chartData.filter((row) => row.variable === "Gross Pay").shift();
 
 	const processedData = {
 		labels: labels,
@@ -57,6 +76,10 @@ const DetailDonutChart = ({ chartData }) => {
 	return (
 		<div style={styles.donutChart}>
 			<Doughnut data={processedData} options={options} />
+      <div style={styles.chartInner}>
+          <div style={styles.chartStatus}>{getGrossPayData().variable}</div>
+          <div style={styles.chartValue}>{getGrossPayData().annually}</div>
+        </div>
 		</div>
 	);
 };
