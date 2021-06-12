@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     margin: '16px 0',
     borderRadius: 5,
   },
+  noMarginTop: {
+    marginTop: '0',
+  },
   accordionDetails: {
     flexDirection: 'column',
   },
@@ -205,7 +208,7 @@ function App() {
           />
         </div>
         {annualIncome > 0 && <DetailDonutChart chartData={populateDataRows()}/>}
-        <Accordion className={styles.accordion}>
+        <Accordion className={[styles.accordion, annualIncome ? styles.noMarginTop: ""]}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference
           </AccordionSummary>
