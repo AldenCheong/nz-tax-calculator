@@ -2,19 +2,19 @@ import { Doughnut } from "react-chartjs-2";
 
 const styles = {
 	donutChart: {
-		width: 400,
-		height: 400,
+		width: 300,
+		height: 300,
     position: 'relative',
     zIndex: 0,
 	},
   chartInner: {
     position: 'absolute',
     top: '25%',
-    left: '25%',
-    right: '25%',
+    left: '12.5%',
+    right: '12.5%',
     textAlign: 'center',
     backgroundColor: '#fffbed',
-    lineHeight: '200%',
+    lineHeight: '170%',
     height: '50%',
     display: 'flex',
     flexDirection: 'column',
@@ -27,7 +27,7 @@ const styles = {
   },
   chartValue: {
     fontWeight: 'bold',
-    color: 'goldenrod'
+    color: 'darkgoldenrod'
   }
 };
 
