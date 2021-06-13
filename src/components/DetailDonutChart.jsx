@@ -1,6 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 
 const styles = {
+  detailBlock: {
+    display: 'flex',
+  },
 	donutChart: {
 		width: 300,
 		height: 300,
@@ -99,7 +102,7 @@ const DetailDonutChart = ({ chartData }) => {
 	};
 
 	return (
-    <>
+    <div style={styles.detailBlock}>
       <div style={styles.donutChart}>
         <Doughnut data={processedData} options={options} />
         <div style={styles.chartInner}>
@@ -112,7 +115,7 @@ const DetailDonutChart = ({ chartData }) => {
         <p>Deductable: {deductable} Deductable Percentage: {(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
         <p>Tax Value: {taxData.annually} Effective Tax Rate: {taxData.percentage}</p>
       </div>
-    </>
+    </div>
 	);
 };
 
