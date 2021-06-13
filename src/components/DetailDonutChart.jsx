@@ -37,6 +37,11 @@ const DetailDonutChart = ({ chartData }) => {
 	let percentages = [];
 	let colors = [];
   let grossPayData = {};
+  let takeHomePayData = {};
+  let taxData = {};
+  let deductable = 0;
+  
+  // Loop through and assign into variables
 	chartData.forEach((row) => {
 		if (row.variable === "Gross Pay") {
       grossPayData = row;
@@ -48,6 +53,17 @@ const DetailDonutChart = ({ chartData }) => {
 		colors.push(
 			row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink"
 		);
+
+    if (row.variable === "Take Home Pay") {
+      takeHomePayData = row;
+      return;
+    }
+
+    if (row.variable === "Tax") {
+      taxData = row;
+    }
+
+    deductable += Number(row.annually);
 	});
 
 	const processedData = {
@@ -83,13 +99,20 @@ const DetailDonutChart = ({ chartData }) => {
 	};
 
 	return (
-		<div style={styles.donutChart}>
-			<Doughnut data={processedData} options={options} />
-      <div style={styles.chartInner}>
-        <div style={styles.chartStatus}>{grossPayData.variable}</div>
-        <div style={styles.chartValue}>{grossPayData.annually}</div>
+    <>
+      <div style={styles.donutChart}>
+        <Doughnut data={processedData} options={options} />
+        <div style={styles.chartInner}>
+          <div style={styles.chartStatus}>{grossPayData.variable}</div>
+          <div style={styles.chartValue}>{grossPayData.annually}</div>
+        </div>
       </div>
-		</div>
+      <div>
+        <p>Take home pay: {takeHomePayData.annually} Percentage: {takeHomePayData.percentage}</p>
+        <p>Deductable: {deductable} Deductable Percentage: {(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
+        <p>Tax Value: {taxData.annually} Effective Tax Rate: {taxData.percentage}</p>
+      </div>
+    </>
 	);
 };
 
