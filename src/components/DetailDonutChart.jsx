@@ -36,8 +36,12 @@ const DetailDonutChart = ({ chartData }) => {
 	let annuallies = [];
 	let percentages = [];
 	let colors = [];
+  let grossPayData = {};
 	chartData.forEach((row) => {
-		if (row.variable === "Gross Pay") return;
+		if (row.variable === "Gross Pay") {
+      grossPayData = row;
+      return;
+    }
 		labels.push(row.variable);
 		annuallies.push(row.annually);
 		percentages.push(row.percentage);
@@ -45,8 +49,6 @@ const DetailDonutChart = ({ chartData }) => {
 			row.variable === "Take Home Pay" ? "lightskyblue" : "lightpink"
 		);
 	});
-
-  const getGrossPayData = () => chartData.filter((row) => row.variable === "Gross Pay").shift();
 
 	const processedData = {
 		labels: labels,
@@ -84,9 +86,9 @@ const DetailDonutChart = ({ chartData }) => {
 		<div style={styles.donutChart}>
 			<Doughnut data={processedData} options={options} />
       <div style={styles.chartInner}>
-          <div style={styles.chartStatus}>{getGrossPayData().variable}</div>
-          <div style={styles.chartValue}>{getGrossPayData().annually}</div>
-        </div>
+        <div style={styles.chartStatus}>{grossPayData.variable}</div>
+        <div style={styles.chartValue}>{grossPayData.annually}</div>
+      </div>
 		</div>
 	);
 };
