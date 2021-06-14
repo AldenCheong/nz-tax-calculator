@@ -111,9 +111,36 @@ const DetailDonutChart = ({ chartData }) => {
         </div>
       </div>
       <div>
-        <p>Take home pay: {takeHomePayData.annually} Percentage: {takeHomePayData.percentage}</p>
-        <p>Deductable: {deductable.toFixed(2)} Deductable Percentage: {(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
-        <p>Tax Value: {taxData.annually} Effective Tax Rate: {taxData.percentage}</p>
+        <div style={{display: "flex"}}>
+          <div>
+            <p>Your take home pay is </p>
+            <p>{takeHomePayData.annually}</p>
+            <p>in period of a year.</p>
+          </div>
+          <div>
+            <p>Which make up </p>
+            <p>{takeHomePayData.percentage}</p>
+            <p>of your gross pay.</p>
+          </div>
+        </div>
+        <div style={{display: "flex"}}>
+          <div>
+            <p>Deductables amount to</p>
+            <p>{deductable.toFixed(2)}</p>
+          </div>
+          <div>
+            <p>Taking portion of</p>
+            <p>{(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
+          </div>
+          <div>
+            <p>Among the deductables, tax amount is</p>
+            <p>{taxData.annually}</p>
+          </div>
+          <div>
+            <p>Making effective tax rate to be</p>
+            <p>{taxData.percentage}</p>
+          </div>
+        </div>
       </div>
     </div>
 	);
