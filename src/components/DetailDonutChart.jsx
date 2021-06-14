@@ -112,7 +112,7 @@ const DetailDonutChart = ({ chartData }) => {
       </div>
       <div>
         <p>Take home pay: {takeHomePayData.annually} Percentage: {takeHomePayData.percentage}</p>
-        <p>Deductable: {deductable} Deductable Percentage: {(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
+        <p>Deductable: {deductable.toFixed(2)} Deductable Percentage: {(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</p>
         <p>Tax Value: {taxData.annually} Effective Tax Rate: {taxData.percentage}</p>
       </div>
     </div>
