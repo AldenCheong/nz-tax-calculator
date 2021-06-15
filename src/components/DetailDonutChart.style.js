@@ -1,4 +1,6 @@
-const DetailDonutChartStyles = {
+import { makeStyles } from '@material-ui/core/styles';
+
+const DetailDonutChartStyles = makeStyles({
   detailBlock: {
     display: 'flex',
   },
@@ -24,12 +26,13 @@ const DetailDonutChartStyles = {
   },
   chartStatus: {
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 'larger',
   },
   chartValue: {
     fontWeight: 'bold',
-    color: 'darkgoldenrod'
+    fontSize: 'large',
+    color: 'darkgoldenrod',
   }
-};
+});
 
 export default DetailDonutChartStyles
