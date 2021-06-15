@@ -208,7 +208,7 @@ function App() {
           />
         </div>
         {annualIncome > 0 && <DetailDonutChart chartData={populateDataRows()}/>}
-        <Accordion className={[styles.accordion, annualIncome ? styles.noMarginTop: ""]}>
+        <Accordion className={`${styles.accordion} ${annualIncome ? styles.noMarginTop: ""}`}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             Reference
           </AccordionSummary>
