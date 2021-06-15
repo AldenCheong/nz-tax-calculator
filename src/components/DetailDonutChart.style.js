@@ -32,6 +32,19 @@ const DetailDonutChartStyles = makeStyles({
     fontWeight: 'bold',
     fontSize: 'large',
     color: 'darkgoldenrod',
+  },
+  explanationPanel: {
+    display: 'flex',
+  },
+  explanationBlock: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 25,
+  },
+  highlightText: {
+    fontWeight: 'bold',
+    color: 'darkgoldenrod',
+    fontSize: 'xx-large',
   }
 });
 
