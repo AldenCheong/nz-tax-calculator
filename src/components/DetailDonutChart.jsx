@@ -83,30 +83,16 @@ const DetailDonutChart = ({ chartData }) => {
           <div className={styles.explanationBlock}>
             <span>Your take home pay is </span>
             <span className={styles.highlightText}>{takeHomePayData.annually}</span>
-            <span>in period of a year.</span>
-          </div>
-          <div className={styles.explanationBlock}>
-            <span>Which make up </span>
-            <span className={styles.highlightText}>{takeHomePayData.percentage}</span>
-            <span>of your gross pay.</span>
           </div>
         </div>
         <div className={styles.explanationPanel}>
           <div className={styles.explanationBlock}>
-            <span>Deductables amount to</span>
+            <span>Deductables</span>
             <span className={styles.highlightText}>{deductable.toFixed(2)}</span>
           </div>
           <div className={styles.explanationBlock}>
-            <span>Taking portion of</span>
-            <span className={styles.highlightText}>{(deductable / grossPayData.annually * 100).toFixed(2) + "%"}</span>
-          </div>
-          <div className={styles.explanationBlock}>
-            <span>Among the deductables, tax amount is</span>
+            <span>Effective Tax</span>
             <span className={styles.highlightText}>{taxData.annually}</span>
-          </div>
-          <div className={styles.explanationBlock}>
-            <span>Making effective tax rate to be</span>
-            <span className={styles.highlightText}>{taxData.percentage}</span>
           </div>
         </div>
       </div>
