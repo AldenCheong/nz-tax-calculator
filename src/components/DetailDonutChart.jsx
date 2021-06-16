@@ -1,4 +1,5 @@
 import { Doughnut } from "react-chartjs-2";
+import { ButtonGroup, Button } from "@material-ui/core";
 import useStyles from "./DetailDonutChart.style.js"
 
 const DetailDonutChart = ({ chartData }) => {
@@ -80,6 +81,12 @@ const DetailDonutChart = ({ chartData }) => {
       </div>
       <div className={styles.explanationPanel}>
         <div className={styles.explanationRow}>
+          <div className={styles.explanationBlock}>
+            <ButtonGroup size="large" variant="outlined" color="secondary">
+              <Button>%</Button>
+              <Button>#</Button>
+            </ButtonGroup>
+          </div>
         </div>
         <div className={styles.explanationRow}>
           <div className={styles.explanationBlock}>
