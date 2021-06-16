@@ -34,17 +34,26 @@ const DetailDonutChartStyles = makeStyles({
     color: 'darkgoldenrod',
   },
   explanationPanel: {
+    width: '100%',
+    padding: 20,
+  },
+  explanationRow: {
     display: 'flex',
+    flex: 1,
   },
   explanationBlock: {
     display: 'flex',
-    flexDirection: 'column',
+    flex: 1,
     padding: 25,
+    '& span': {
+      alignSelf: 'center',
+    }
   },
   highlightText: {
     fontWeight: 'bold',
     color: 'darkgoldenrod',
-    fontSize: 'xx-large',
+    fontSize: 'x-large',
+    marginLeft: 50,
   }
 });
 

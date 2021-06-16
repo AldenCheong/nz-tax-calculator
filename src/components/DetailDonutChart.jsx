@@ -78,14 +78,16 @@ const DetailDonutChart = ({ chartData }) => {
           <div className={styles.chartValue}>{grossPayData.annually}</div>
         </div>
       </div>
-      <div>
-        <div className={styles.explanationPanel}>
+      <div className={styles.explanationPanel}>
+        <div className={styles.explanationRow}>
+        </div>
+        <div className={styles.explanationRow}>
           <div className={styles.explanationBlock}>
             <span>Your take home pay is </span>
             <span className={styles.highlightText}>{takeHomePayData.annually}</span>
           </div>
         </div>
-        <div className={styles.explanationPanel}>
+        <div className={styles.explanationRow}>
           <div className={styles.explanationBlock}>
             <span>Deductables</span>
             <span className={styles.highlightText}>{deductable.toFixed(2)}</span>
