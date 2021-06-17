@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { ButtonGroup, Button } from "@material-ui/core";
+import { ToggleButtonGroup, ToggleButton } from "@material-ui/lab";
 import useStyles from "./DetailDonutChart.style.js"
 
 const DetailDonutChart = ({ chartData }) => {
@@ -12,6 +13,7 @@ const DetailDonutChart = ({ chartData }) => {
   let takeHomePayData = {};
   let taxData = {};
   let deductable = 0;
+  const [displayFormat, setDisplayFormat] = useState('%');
   
   // Loop through and assign into variables
 	chartData.forEach((row) => {
@@ -70,6 +72,8 @@ const DetailDonutChart = ({ chartData }) => {
 		},
 	};
 
+  const handleDisplayFormat = () => {}
+
 	return (
     <div className={styles.detailBlock}>
       <div className={styles.donutChart}>
@@ -82,10 +86,18 @@ const DetailDonutChart = ({ chartData }) => {
       <div className={styles.explanationPanel}>
         <div className={styles.explanationRow}>
           <div className={styles.explanationBlock}>
-            <ButtonGroup size="large" variant="outlined" color="secondary">
-              <Button>%</Button>
-              <Button>#</Button>
-            </ButtonGroup>
+            <ToggleButtonGroup
+              value={displayFormat}
+              onChange={handleDisplayFormat}
+              aria-label="text alignment"
+            >
+              <ToggleButton value="%" variant="outlined" color="secondary" aria-label="left aligned">
+                %
+              </ToggleButton>
+              <ToggleButton value="#" variant="outlined" color="secondary" aria-label="right aligned">
+                #
+              </ToggleButton>
+            </ToggleButtonGroup>
           </div>
         </div>
         <div className={styles.explanationRow}>
