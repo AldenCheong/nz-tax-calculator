@@ -1583,7 +1583,7 @@
     jss-plugin-vendor-prefixer "^10.0.3"
     prop-types "^15.7.2"
 
-"@material-ui/system@5.0.0-alpha.37", "@material-ui/system@^5.0.0-alpha.37":
+"@material-ui/system@5.0.0-alpha.37":
   version "5.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-5.0.0-alpha.37.tgz#0bac409badb8e9fcbd3c3da05ec071db2edf2630"
   integrity sha512-4eu05aXLWMzth6nsgRT6bvr88jDlPEsum0s9JZ4SO6MR/vqoVSpWk8Vesv2YifwPlvr6k+dv5XXb+DCdsYhIrQ==
