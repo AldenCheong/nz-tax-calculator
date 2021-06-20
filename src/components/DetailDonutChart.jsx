@@ -94,12 +94,13 @@ const DetailDonutChart = ({ chartData }) => {
 					<div className={styles.explanationBlock}>
 						<ToggleButtonGroup
 							color="secondary"
+              className={styles.toggleButtonGroup}
 							value={displayFormat}
 							exclusive
 							onChange={handleDisplayFormat}
 						>
-							<ToggleButton value="%">%</ToggleButton>
-							<ToggleButton value="#">#</ToggleButton>
+							<ToggleButton className={styles.toggleButton} value="%">%</ToggleButton>
+							<ToggleButton className={styles.toggleButton} value="#">#</ToggleButton>
 						</ToggleButtonGroup>
 					</div>
 				</div>

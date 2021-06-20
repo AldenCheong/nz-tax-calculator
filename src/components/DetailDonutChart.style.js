@@ -57,7 +57,13 @@ const DetailDonutChartStyles = makeStyles({
     color: 'darkgoldenrod',
     fontSize: 'x-large',
     marginLeft: 50,
-  }
+  },
+  toggleButtonGroup: {
+    height: 35
+  },
+  toggleButton: {
+    width: 70,
+  },
 });
 
 export default DetailDonutChartStyles
