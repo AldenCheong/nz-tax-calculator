@@ -103,16 +103,6 @@ function App() {
       <MenuItem key={frequency} value={frequency}>{frequency}</MenuItem>
     ))
   }
-  const getValues = (amount) => {
-    return {
-      hourly: (amount/(52*hourPerWeek)).toFixed(2),
-      weekly: (amount/52).toFixed(2),
-      fortnightly: (amount/26).toFixed(2),
-      monthly: (amount/12).toFixed(2),
-      annually: Number(amount).toFixed(2),
-      percentage: annualIncome? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
-    }
-  }
 
   const populateDataRows = () => {
     const { tax, acc, kiwi } = deductable;
@@ -123,6 +113,16 @@ function App() {
       { label: "KiwiSaver", value: kiwi },
       { label: "Take Home Pay", value: takeHomePay },
     ]
+    const getValues = (amount) => {
+      return {
+        hourly: (amount/(52*hourPerWeek)).toFixed(2),
+        weekly: (amount/52).toFixed(2),
+        fortnightly: (amount/26).toFixed(2),
+        monthly: (amount/12).toFixed(2),
+        annually: Number(amount).toFixed(2),
+        percentage: annualIncome? ((amount/annualIncome) * 100).toFixed(2) + "%" : "0%",
+      }
+    }
     const setWithTemplate = (index, label, value) => {
       return {
         id: index,
