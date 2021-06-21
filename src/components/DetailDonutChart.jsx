@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-// import { ToggleButtonGroup, ToggleButton } from "@material-ui/core";
 import ToggleButton from "@material-ui/core/ToggleButton";
 import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
 import useStyles from "./DetailDonutChart.style.js";
