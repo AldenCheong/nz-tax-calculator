@@ -13,7 +13,7 @@ const DetailDonutChart = ({ chartData }) => {
 	let data = {};
 	const [displayFormat, setDisplayFormat] = useState("%");
 
-	// Loop through and assign into variables
+	// Loop through and assign into an object variable
 	chartData.forEach((row) => {
 		if (row.variable === "Gross Pay") {
 			data = { ...data, [row.variable]: row };
