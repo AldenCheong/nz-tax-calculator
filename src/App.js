@@ -59,9 +59,7 @@ function App() {
 	const [incomeInput, setIncomeInput] = useState(0);
 	const [annualIncome, setAnnualIncome] = useState(0);
 	const [hourPerWeek, setHourPerWeek] = useState(40);
-	const [incomeFrequency, setIncomeFrequency] = useState(
-		IncomeFrequency.annually
-	);
+	const [incomeFrequency, setIncomeFrequency] = useState(IncomeFrequency.annually);
 	const [deductable, setDeductable] = useState({ tax: 0, acc: 0, kiwi: 0 });
 	const [bracket, setBracket] = useState({ tax: [], acc: [] });
 	const [kiwiSaver, setKiwiSaver] = useState({
@@ -73,8 +71,11 @@ function App() {
 
 	useEffect(() => {
 		const asyncFetchConstant = async () => {
-			const { taxBracket, accBracket, kiwiSaverRateOptions } =
-				await fetchConstants();
+			const { 
+        taxBracket, 
+        accBracket, 
+        kiwiSaverRateOptions 
+      } =	await fetchConstants();
 			setBracket({
 				tax: taxBracket,
 				acc: accBracket,
