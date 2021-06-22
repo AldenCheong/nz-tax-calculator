@@ -16,7 +16,7 @@ const DetailDonutChart = ({ chartData }) => {
 	// Loop through and assign into variables
 	chartData.forEach((row) => {
 		if (row.variable === "Gross Pay") {
-			data = {...data, [row.variable]: row};
+			data = { ...data, [row.variable]: row };
 			return;
 		}
 		labels.push(row.variable);
@@ -27,11 +27,18 @@ const DetailDonutChart = ({ chartData }) => {
 		);
 
 		if (row.variable === "Take Home Pay") {
-			data = {...data, [row.variable]: row};
+			data = { ...data, [row.variable]: row };
 			return;
 		}
-    const totalAmount = Number(row.annually) + (data["Deductable"]?.Total || 0);
-    data = {...data, Deductable: {...data["Deductable"], [row.variable]: row, Total: totalAmount}};
+		const totalAmount = Number(row.annually) + (data["Deductable"]?.Total || 0);
+		data = {
+			...data,
+			Deductable: {
+				...data["Deductable"],
+				[row.variable]: row,
+				Total: totalAmount,
+			},
+		};
 	});
 
 	const processedData = {
@@ -86,13 +93,17 @@ const DetailDonutChart = ({ chartData }) => {
 					<div className={styles.explanationBlock}>
 						<ToggleButtonGroup
 							color="secondary"
-              className={styles.toggleButtonGroup}
+							className={styles.toggleButtonGroup}
 							value={displayFormat}
 							exclusive
 							onChange={handleDisplayFormat}
 						>
-							<ToggleButton className={styles.toggleButton} value="%">%</ToggleButton>
-							<ToggleButton className={styles.toggleButton} value="#">#</ToggleButton>
+							<ToggleButton className={styles.toggleButton} value="%">
+								%
+							</ToggleButton>
+							<ToggleButton className={styles.toggleButton} value="#">
+								#
+							</ToggleButton>
 						</ToggleButtonGroup>
 					</div>
 				</div>
@@ -100,7 +111,9 @@ const DetailDonutChart = ({ chartData }) => {
 					<div className={styles.explanationBlock}>
 						<span>Your take home pay is </span>
 						<span className={styles.highlightText}>
-							{displayFormat === "#" ? data["Take Home Pay"].annually : data["Take Home Pay"].percentage}
+							{displayFormat === "#"
+								? data["Take Home Pay"].annually
+								: data["Take Home Pay"].percentage}
 						</span>
 					</div>
 				</div>
@@ -108,14 +121,21 @@ const DetailDonutChart = ({ chartData }) => {
 					<div className={styles.explanationBlock}>
 						<span>Deductables</span>
 						<span className={styles.highlightText}>
-							{displayFormat === "#" ? data["Deductable"]["Total"].toFixed(2) : (data["Deductable"]["Total"]/data["Gross Pay"].annually*100).toFixed(2) + '%'}
+							{displayFormat === "#"
+								? data["Deductable"]["Total"].toFixed(2)
+								: (
+										(data["Deductable"]["Total"] / data["Gross Pay"].annually) *
+										100
+								  ).toFixed(2) + "%"}
 						</span>
 					</div>
 					<div className={styles.explanationBlock}>
 						<span>Effective Tax</span>
 						<span className={styles.highlightText}>
-              {displayFormat === "#" ? data["Deductable"]["Tax"].annually : data["Deductable"]["Tax"].percentage}
-              </span>
+							{displayFormat === "#"
+								? data["Deductable"]["Tax"].annually
+								: data["Deductable"]["Tax"].percentage}
+						</span>
 					</div>
 				</div>
 			</div>
