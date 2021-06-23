@@ -25,14 +25,18 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
 	card: {
-		backgroundColor: "cornsilk",
-		margin: "25px auto",
-		maxWidth: 1100,
+    "&.MuiCard-root": {
+      backgroundColor: "cornsilk",
+      margin: "25px auto",
+      maxWidth: 1100,
+    },
 	},
 	accordion: {
-		backgroundColor: "transparent",
-		margin: "16px 0",
-		borderRadius: 5,
+    "&.MuiAccordion-root": {
+      backgroundColor: "transparent",
+      margin: "16px 0",
+      borderRadius: 5,
+    },
 	},
 	noMarginTop: {
 		marginTop: "0",
