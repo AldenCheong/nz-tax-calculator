@@ -191,14 +191,14 @@ function App() {
 				<TextField
 					variant="outlined"
 					size="small"
-					color="secondary"
+					color="primary"
 					label="Income"
 					onChange={calculateIncome}
 				/>
 				<FormControl variant="outlined" size="small">
 					<Select
 						value={incomeFrequency}
-						color="secondary"
+						color="primary"
 						onChange={onSelectFrequency}
 					>
 						{setIncomeFrequencyOptions()}
@@ -221,7 +221,7 @@ function App() {
 							<TextField
 								variant="outlined"
 								size="small"
-								color="secondary"
+								color="primary"
 								className="txt-hourperweek"
 								label="Hour per week"
 								value={hourPerWeek}

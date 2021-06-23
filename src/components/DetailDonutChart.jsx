@@ -94,7 +94,7 @@ const DetailDonutChart = ({ chartData }) => {
 				<div className={styles.explanationRow}>
 					<div className={styles.explanationBlock}>
 						<ToggleButtonGroup
-							color="secondary"
+							color="primary"
 							className={styles.toggleButtonGroup}
 							value={displayFormat}
 							exclusive
