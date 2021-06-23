@@ -76,8 +76,10 @@ const DetailDonutChart = ({ chartData }) => {
 		},
 	};
 
-	const handleDisplayFormat = (_value, newDisplayFormat) =>
-		setDisplayFormat(newDisplayFormat);
+	const handleDisplayFormat = (_value, newDisplayFormat) => {
+    if (newDisplayFormat === null) return;
+    setDisplayFormat(newDisplayFormat);
+  }
 
 	return (
 		<div className={styles.detailBlock}>
