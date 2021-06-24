@@ -122,7 +122,7 @@ const DetailDonutChart = ({ chartData }) => {
 				<div className={styles.explanationRow}>
 					<div className={styles.explanationBlock}>
 						<span>Deductables</span>
-						<span className={styles.highlightText}>
+						<span className={styles.highlightText} onClick={()=>{console.log("clicked here :p")}}>
 							{displayFormat === "#"
 								? data["Deductable"]["Total"].toFixed(2)
 								: (
