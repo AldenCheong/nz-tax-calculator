@@ -91,7 +91,7 @@ const DetailDonutChart = ({ chartData }) => {
 					<div className={styles.chartValue}>{data["Gross Pay"].annually}</div>
 				</div>
 			</div>):
-      (<span>Chart Not Available</span>)}
+      (<span className={styles.chartNotAvailableLabel}>Chart<br/>Not Available</span>)}
 			<div className={styles.explanationPanel}>
 				<div className={styles.explanationRow}>
 					<div className={styles.explanationBlock}>

@@ -64,6 +64,12 @@ const DetailDonutChartStyles = makeStyles({
   toggleButton: {
     width: 70,
   },
+  chartNotAvailableLabel: {
+    alignSelf: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    width: 300,
+  },
 });
 
 export default DetailDonutChartStyles
