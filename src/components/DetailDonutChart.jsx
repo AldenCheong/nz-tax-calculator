@@ -83,14 +83,15 @@ const DetailDonutChart = ({ chartData }) => {
 
 	return (
 		<div className={styles.detailBlock}>
-			{data["Take Home Pay"].annually > 0 && 
+			{data["Take Home Pay"].annually > 0 ? 
       (<div className={styles.donutChart}>
 				<Doughnut data={processedData} options={options} />
 				<div className={styles.chartInner}>
 					<div className={styles.chartStatus}>{data["Gross Pay"].variable}</div>
 					<div className={styles.chartValue}>{data["Gross Pay"].annually}</div>
 				</div>
-			</div>)}
+			</div>):
+      (<span>Chart Not Available</span>)}
 			<div className={styles.explanationPanel}>
 				<div className={styles.explanationRow}>
 					<div className={styles.explanationBlock}>
