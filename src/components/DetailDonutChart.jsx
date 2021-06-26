@@ -111,6 +111,11 @@ const DetailDonutChart = ({ chartData }) => {
 						</ToggleButtonGroup>
 					</div>
 				</div>
+        <div className={styles.explanationRow}>
+					<div className={styles.explanationBlock}>
+						<span>Based on your gross pay...</span>
+					</div>
+				</div>
 				<div className={styles.explanationRow}>
 					<div className={styles.explanationBlock}>
 						<span>Your take home pay is </span>

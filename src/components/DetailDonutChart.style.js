@@ -47,7 +47,7 @@ const DetailDonutChartStyles = makeStyles({
   explanationBlock: {
     display: 'flex',
     flex: 1,
-    padding: 25,
+    padding: 10,
     '& > span': {
       alignSelf: 'center',
     },
