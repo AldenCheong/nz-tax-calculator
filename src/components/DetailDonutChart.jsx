@@ -12,6 +12,7 @@ const DetailDonutChart = ({ chartData }) => {
 	let colors = [];
 	let data = {};
 	const [displayFormat, setDisplayFormat] = useState("%");
+  const [showDeductableDetail, setShowDeductableDetail] = useState(false);
 
 	// Loop through and assign into an object variable
 	chartData.forEach((row) => {
@@ -30,14 +31,13 @@ const DetailDonutChart = ({ chartData }) => {
 			data = { ...data, [row.variable]: row };
 			return;
 		}
-		const totalAmount = Number(row.annually) + (data["Deductable"]?.Total || 0);
+		const totalAmount = Number(row.annually) + (data.TotalDeductable || 0);
+    let deductableArray = data["Deductable"] || [];
+    deductableArray.push(row);
 		data = {
 			...data,
-			Deductable: {
-				...data["Deductable"],
-				[row.variable]: row,
-				Total: totalAmount,
-			},
+			Deductable: deductableArray,
+      TotalDeductable: totalAmount,
 		};
 	});
 
@@ -111,42 +111,72 @@ const DetailDonutChart = ({ chartData }) => {
 						</ToggleButtonGroup>
 					</div>
 				</div>
-        <div className={styles.explanationRow}>
-					<div className={styles.explanationBlock}>
-						<span>Based on your gross pay...</span>
-					</div>
-				</div>
-				<div className={styles.explanationRow}>
-					<div className={styles.explanationBlock}>
-						<span>Your take home pay is </span>
-						<span className={styles.highlightText}>
-							{displayFormat === "#"
-								? data["Take Home Pay"].annually
-								: data["Take Home Pay"].percentage}
-						</span>
-					</div>
-				</div>
-				<div className={styles.explanationRow}>
-					<div className={styles.explanationBlock}>
-						<span>Deductables</span>
-						<span className={styles.highlightText} onClick={()=>{console.log("clicked here :p")}}>
-							{displayFormat === "#"
-								? data["Deductable"]["Total"].toFixed(2)
-								: (
-										(data["Deductable"]["Total"] / data["Gross Pay"].annually) *
-										100
-								  ).toFixed(2) + "%"}
-						</span>
-					</div>
-					<div className={styles.explanationBlock}>
-						<span>Effective Tax</span>
-						<span className={styles.highlightText}>
-							{displayFormat === "#"
-								? data["Deductable"]["Tax"].annually
-								: data["Deductable"]["Tax"].percentage}
-						</span>
-					</div>
-				</div>
+        {showDeductableDetail ? 
+        (<>
+          <div className={styles.explanationRow}>
+            <div className={styles.explanationBlock}>
+              <span>Total Deductables</span>
+              <span className={styles.highlightText} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+                {displayFormat === "#"
+                  ? data["TotalDeductable"].toFixed(2)
+                  : (
+                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                      100
+                    ).toFixed(2) + "%"}
+              </span>
+            </div>
+          </div>
+          <div className={styles.explanationRow}>
+          {data["Deductable"].map(deductable => {return (
+            <div key={deductable.id} className={styles.explanationBlock}>
+              <span>{deductable.variable}</span>
+              <span className={styles.highlightText}>
+                {displayFormat === "#"
+                  ? deductable.annually
+                  : deductable.percentage}
+              </span>
+            </div>
+          );})}
+          </div>
+        </>) :
+        (<>
+          <div className={styles.explanationRow}>
+            <div className={styles.explanationBlock}>
+              <span>Based on your gross pay...</span>
+            </div>
+          </div>
+          <div className={styles.explanationRow}>
+            <div className={styles.explanationBlock}>
+              <span>Your take home pay is </span>
+              <span className={styles.highlightText}>
+                {displayFormat === "#"
+                  ? data["Take Home Pay"].annually
+                  : data["Take Home Pay"].percentage}
+              </span>
+            </div>
+          </div>
+          <div className={styles.explanationRow}>
+            <div className={styles.explanationBlock}>
+              <span>Deductables</span>
+              <span className={styles.highlightText} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+                {displayFormat === "#"
+                  ? data["TotalDeductable"].toFixed(2)
+                  : (
+                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                      100
+                    ).toFixed(2) + "%"}
+              </span>
+            </div>
+            <div className={styles.explanationBlock}>
+              <span>Effective Tax</span>
+              <span className={styles.highlightText}>
+                {displayFormat === "#"
+                  ? data["Deductable"].find(x => x.variable === "Tax").annually
+                  : data["Deductable"].find(x => x.variable === "Tax").percentage}
+              </span>
+            </div>
+          </div>
+        </>)}
 			</div>
 		</div>
 	);
