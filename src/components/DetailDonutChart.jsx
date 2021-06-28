@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import ToggleButton from "@material-ui/core/ToggleButton";
+import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
 import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
 import useStyles from "./DetailDonutChart.style.js";
 
@@ -129,6 +130,7 @@ const DetailDonutChart = ({ chartData }) => {
           <div className={styles.explanationRow}>
           {data["Deductable"].map(deductable => {return (
             <div key={deductable.id} className={styles.explanationBlock}>
+              <DoubleArrowRoundedIcon className={styles.arrowIcon} />
               <span>{deductable.variable}</span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"

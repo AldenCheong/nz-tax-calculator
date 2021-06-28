@@ -52,6 +52,11 @@ const DetailDonutChartStyles = makeStyles({
       alignSelf: 'center',
     },
   },
+  arrowIcon: {
+    marginTop: 5,
+    marginRight: 5,
+    color: 'darkgoldenrod',
+  },
   highlightText: {
     fontWeight: 'bold',
     color: 'darkgoldenrod',
