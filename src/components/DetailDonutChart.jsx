@@ -114,9 +114,9 @@ const DetailDonutChart = ({ chartData }) => {
         {showDeductableDetail ? 
         (<>
           <div className={styles.explanationRow}>
-            <div className={styles.explanationBlock}>
+            <div className={styles.explanationBlock} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
               <span>Total Deductables</span>
-              <span className={styles.highlightText} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+              <span className={styles.highlightText}>
                 {displayFormat === "#"
                   ? data["TotalDeductable"].toFixed(2)
                   : (
@@ -156,9 +156,9 @@ const DetailDonutChart = ({ chartData }) => {
             </div>
           </div>
           <div className={styles.explanationRow}>
-            <div className={styles.explanationBlock}>
+            <div className={styles.explanationBlock} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
               <span>Deductables</span>
-              <span className={styles.highlightText} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+              <span className={styles.highlightText}>
                 {displayFormat === "#"
                   ? data["TotalDeductable"].toFixed(2)
                   : (
