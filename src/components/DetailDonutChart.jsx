@@ -135,7 +135,10 @@ const DetailDonutChart = ({ chartData }) => {
               <span className={styles.highlightText}>
                 {displayFormat === "#"
                   ? deductable.annually
-                  : deductable.percentage}
+                  : (
+                      (deductable.annually / data["TotalDeductable"]) *
+                      100
+                    ).toFixed(2) + "%"}
               </span>
             </div>
           );})}
