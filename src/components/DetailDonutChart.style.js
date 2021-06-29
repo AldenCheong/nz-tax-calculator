@@ -55,13 +55,14 @@ const DetailDonutChartStyles = makeStyles({
   arrowIcon: {
     marginTop: 5,
     marginRight: 5,
-    color: 'darkgoldenrod',
+    color: 'darkslategrey',
   },
   highlightText: {
     fontWeight: 'bold',
     color: 'darkgoldenrod',
     fontSize: 'x-large',
     marginLeft: 50,
+    cursor: 'default',
   },
   toggleButtonGroup: {
     height: 35
@@ -74,6 +75,16 @@ const DetailDonutChartStyles = makeStyles({
     textAlign: 'center',
     fontWeight: 'bold',
     width: 300,
+  },
+  viewable: {
+    '&:hover': {
+      color: 'lightskyblue',
+      cursor: 'pointer',
+      '& $highlightText': {
+        color: 'lightskyblue',
+        cursor: 'pointer',
+      },
+    },
   },
 });
 

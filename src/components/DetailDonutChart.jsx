@@ -115,7 +115,7 @@ const DetailDonutChart = ({ chartData }) => {
         {showDeductableDetail ? 
         (<>
           <div className={styles.explanationRow}>
-            <div className={styles.explanationBlock} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+            <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
               <span>Total Deductables</span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"
@@ -161,7 +161,7 @@ const DetailDonutChart = ({ chartData }) => {
             </div>
           </div>
           <div className={styles.explanationRow}>
-            <div className={styles.explanationBlock} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
+            <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
               <span>Deductables</span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"
