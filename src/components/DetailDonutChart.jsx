@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
-import ToggleButton from "@material-ui/core/ToggleButton";
+import { ToggleButton, Tooltip, Zoom } from "@material-ui/core";
 import { DoubleArrowRounded, InfoOutlined } from '@material-ui/icons';
 import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
 import useStyles from "./DetailDonutChart.style.js";
@@ -116,15 +116,19 @@ const DetailDonutChart = ({ chartData }) => {
         (<>
           <div className={styles.explanationRow}>
             <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
-              <span>Total Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
-              <span className={styles.highlightText}>
-                {displayFormat === "#"
-                  ? data["TotalDeductable"].toFixed(2)
-                  : (
-                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
-                      100
-                    ).toFixed(2) + "%"}
-              </span>
+              <Tooltip title="Click to view overall" placement="right" TransitionComponent={Zoom} arrow>
+                <span>Total Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
+              </Tooltip>
+              <Tooltip title="Click to view overall" placement="right" TransitionComponent={Zoom} arrow>
+                <span className={styles.highlightText}>
+                  {displayFormat === "#"
+                    ? data["TotalDeductable"].toFixed(2)
+                    : (
+                        (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                        100
+                      ).toFixed(2) + "%"}
+                </span>
+              </Tooltip>
             </div>
           </div>
           <div className={styles.explanationRow}>
@@ -162,15 +166,19 @@ const DetailDonutChart = ({ chartData }) => {
           </div>
           <div className={styles.explanationRow}>
             <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
-              <span>Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
-              <span className={styles.highlightText}>
-                {displayFormat === "#"
-                  ? data["TotalDeductable"].toFixed(2)
-                  : (
-                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
-                      100
-                    ).toFixed(2) + "%"}
-              </span>
+              <Tooltip title="Click to view details" placement="right" TransitionComponent={Zoom} arrow>
+                <span>Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
+              </Tooltip>
+              <Tooltip title="Click to view details" placement="right" TransitionComponent={Zoom} arrow>
+                <span className={styles.highlightText}>
+                  {displayFormat === "#"
+                    ? data["TotalDeductable"].toFixed(2)
+                    : (
+                        (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                        100
+                      ).toFixed(2) + "%"}
+                </span>
+              </Tooltip>
             </div>
             <div className={styles.explanationBlock}>
               <span>Effective Tax</span>
