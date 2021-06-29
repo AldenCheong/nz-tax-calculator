@@ -119,16 +119,14 @@ const DetailDonutChart = ({ chartData }) => {
               <Tooltip title="Click to view overall" placement="right" TransitionComponent={Zoom} arrow>
                 <span>Total Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
               </Tooltip>
-              <Tooltip title="Click to view overall" placement="right" TransitionComponent={Zoom} arrow>
-                <span className={styles.highlightText}>
-                  {displayFormat === "#"
-                    ? data["TotalDeductable"].toFixed(2)
-                    : (
-                        (data["TotalDeductable"] / data["Gross Pay"].annually) *
-                        100
-                      ).toFixed(2) + "%"}
-                </span>
-              </Tooltip>
+              <span className={styles.highlightText}>
+                {displayFormat === "#"
+                  ? data["TotalDeductable"].toFixed(2)
+                  : (
+                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                      100
+                    ).toFixed(2) + "%"}
+              </span>
             </div>
           </div>
           <div className={styles.explanationRow}>
@@ -169,16 +167,14 @@ const DetailDonutChart = ({ chartData }) => {
               <Tooltip title="Click to view details" placement="right" TransitionComponent={Zoom} arrow>
                 <span>Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
               </Tooltip>
-              <Tooltip title="Click to view details" placement="right" TransitionComponent={Zoom} arrow>
-                <span className={styles.highlightText}>
-                  {displayFormat === "#"
-                    ? data["TotalDeductable"].toFixed(2)
-                    : (
-                        (data["TotalDeductable"] / data["Gross Pay"].annually) *
-                        100
-                      ).toFixed(2) + "%"}
-                </span>
-              </Tooltip>
+              <span className={styles.highlightText}>
+                {displayFormat === "#"
+                  ? data["TotalDeductable"].toFixed(2)
+                  : (
+                      (data["TotalDeductable"] / data["Gross Pay"].annually) *
+                      100
+                    ).toFixed(2) + "%"}
+              </span>
             </div>
             <div className={styles.explanationBlock}>
               <span>Effective Tax</span>
