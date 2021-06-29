@@ -77,8 +77,10 @@ const DetailDonutChartStyles = makeStyles({
     width: 300,
   },
   viewable: {
-    textDecoration: 'underline dotted darkslategrey 2px',
-    textUnderlineOffset: '3px',
+    '& :not($highlightText)': {
+      textDecoration: 'underline dotted darkslategrey 2px',
+      textUnderlineOffset: '3px',
+    },
     '&:hover': {
       color: 'lightskyblue',
       cursor: 'pointer',
