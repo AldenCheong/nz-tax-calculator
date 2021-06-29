@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import ToggleButton from "@material-ui/core/ToggleButton";
-import DoubleArrowRoundedIcon from '@material-ui/icons/DoubleArrowRounded';
+import { DoubleArrowRounded, InfoOutlined } from '@material-ui/icons';
 import ToggleButtonGroup from "@material-ui/core/ToggleButtonGroup";
 import useStyles from "./DetailDonutChart.style.js";
 
@@ -116,7 +116,7 @@ const DetailDonutChart = ({ chartData }) => {
         (<>
           <div className={styles.explanationRow}>
             <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
-              <span>Total Deductables</span>
+              <span>Total Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"
                   ? data["TotalDeductable"].toFixed(2)
@@ -130,7 +130,7 @@ const DetailDonutChart = ({ chartData }) => {
           <div className={styles.explanationRow}>
           {data["Deductable"].map(deductable => {return (
             <div key={deductable.id} className={styles.explanationBlock}>
-              <DoubleArrowRoundedIcon className={styles.arrowIcon} />
+              <DoubleArrowRounded className={styles.arrowIcon} />
               <span>{deductable.variable}</span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"
@@ -162,7 +162,7 @@ const DetailDonutChart = ({ chartData }) => {
           </div>
           <div className={styles.explanationRow}>
             <div className={`${styles.explanationBlock} ${styles.viewable}`} onClick={()=>setShowDeductableDetail(!showDeductableDetail)}>
-              <span>Deductables</span>
+              <span>Deductables <sup><InfoOutlined fontSize="inherit" /></sup></span>
               <span className={styles.highlightText}>
                 {displayFormat === "#"
                   ? data["TotalDeductable"].toFixed(2)
