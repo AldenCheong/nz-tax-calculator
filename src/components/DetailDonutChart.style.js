@@ -40,13 +40,14 @@ const DetailDonutChartStyles = makeStyles({
   explanationRow: {
     display: 'flex',
     flex: 1,
+    flexWrap: 'wrap',
     '&:first-child > div': {
       paddingTop: 0,
     },
   },
   explanationBlock: {
     display: 'flex',
-    flex: 1,
+    flex: '1 0 45%', // Limit 2 blocks per row
     padding: 10,
     '& > span': {
       alignSelf: 'center',
