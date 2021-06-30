@@ -12,7 +12,7 @@ const DetailDonutChart = ({ chartData }) => {
 	let percentages = [];
 	let colors = [];
 	let data = {};
-	const [displayFormat, setDisplayFormat] = useState("%");
+	const [displayFormat, setDisplayFormat] = useState("#");
   const [showDeductableDetail, setShowDeductableDetail] = useState(false);
 
 	// Loop through and assign into an object variable
@@ -103,11 +103,11 @@ const DetailDonutChart = ({ chartData }) => {
 							exclusive
 							onChange={handleDisplayFormat}
 						>
-							<ToggleButton className={styles.toggleButton} value="%">
-								%
-							</ToggleButton>
 							<ToggleButton className={styles.toggleButton} value="#">
 								#
+							</ToggleButton>
+							<ToggleButton className={styles.toggleButton} value="%">
+								%
 							</ToggleButton>
 						</ToggleButtonGroup>
 					</div>
