@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/nz-tax-calculator/static/css/main.49a6664e.chunk.css",
-    "main.js": "/nz-tax-calculator/static/js/main.606d1b4f.chunk.js",
-    "main.js.map": "/nz-tax-calculator/static/js/main.606d1b4f.chunk.js.map",
+    "main.js": "/nz-tax-calculator/static/js/main.9242e600.chunk.js",
+    "main.js.map": "/nz-tax-calculator/static/js/main.9242e600.chunk.js.map",
     "runtime-main.js": "/nz-tax-calculator/static/js/runtime-main.731b09c8.js",
     "runtime-main.js.map": "/nz-tax-calculator/static/js/runtime-main.731b09c8.js.map",
     "static/js/2.4222bea9.chunk.js": "/nz-tax-calculator/static/js/2.4222bea9.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.731b09c8.js",
     "static/js/2.4222bea9.chunk.js",
     "static/css/main.49a6664e.chunk.css",
-    "static/js/main.606d1b4f.chunk.js"
+    "static/js/main.9242e600.chunk.js"
   ]
 }
