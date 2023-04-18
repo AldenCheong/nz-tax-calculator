@@ -22,8 +22,8 @@
 		}
 	],
 	"acc-bracket": {
-		"threshold": 136544,
-		"rate": 1.46
+		"threshold": 139384,
+		"rate": 1.53
 	},
 	"kiwisaver-rate-option": [3, 4, 6, 8, 10]
 }
